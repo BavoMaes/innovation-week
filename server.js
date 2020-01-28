@@ -15,9 +15,7 @@ app.get('/Car', function(req, res) {
   res.sendFile(path.join(__dirname + '/public/script/Models/Car.js'));
 });
 
-app.use('/carObject', function(req, res) {
-  res.sendFile(path.join(__dirname + '/public/resources/car.obj'));
-});
+app.use('/resources', express.static(__dirname + '/public/resources/'));
 
 app.get('/app', function(req, res) {
   res.sendFile(path.join(__dirname + '/public/script/app.js'));

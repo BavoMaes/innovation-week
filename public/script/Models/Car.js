@@ -5,6 +5,7 @@ export class Car {
     this.startPos = _startPos;
     this.endPos = _endPos;
     this.reset();
+    this.model = this.sketch.loadModel('/resources/car.obj', true);
   }
 
   update() {
