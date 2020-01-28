@@ -11,6 +11,10 @@ app.get('/Car', function(req, res) {
   res.sendFile(path.join(__dirname + '/public/script/Models/Car.js'));
 });
 
+app.get('/grid', function (req, res) {
+  res.sendFile(path.join(__dirname + '/public/script/Models/grid.js'));
+});
+
 app.use('/carObject', function(req, res) {
   res.sendFile(path.join(__dirname + '/public/resources/car.obj'));
 });

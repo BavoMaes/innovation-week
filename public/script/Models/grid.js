@@ -1,18 +1,23 @@
 export class Grid {
-    constructor(_sketch, _width, _height, _parts) {
+    constructor(_sketch, _width, _height, _boxHeight, _parts) {
         this.sketch = _sketch;
         this.width = _width;
         this.height = _height;
+        this.boxHeight = _boxHeight;
         this.parts = _parts;
     }
 
     draw() {
+        this.sketch.push();
+
+        this.sketch.translate(0, this.boxHeight / 2);
         this.sketch.noFill();
         this.sketch.stroke(50);
         this.sketch.strokeWeight(1);
 
         this.outerLines();
         this.innerLines();
+        this.sketch.pop();
     }
 
     outerLines() {
