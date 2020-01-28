@@ -17,19 +17,13 @@ export class Car {
 
   draw() {
     this.sketch.push();
-    this.sketch.ortho();
 
     this.sketch.strokeWeight(2);
     this.sketch.stroke(this.strokeColor);
     this.sketch.fill(this.fillColor);
     this.sketch.translate(this.location);
 
-    this.sketch.rotateX(this.xTurn);
-    this.sketch.rotateY(this.yTurn);
-
-    this.sketch.box(50, 50, 90);
-    //this.sketch.box(60, 10, 10);
-
+    this.sketch.box(50, 50, 50);
     this.sketch.pop()
 
   }
@@ -46,8 +40,6 @@ export class Car {
     this.maxForce = 0.2;
     this.fillColor = this.sketch.color(255, 110, 99)
     this.strokeColor = this.sketch.color(205, 60, 49)
-    this.xTurn = -this.sketch.atan(1 / this.sketch.sqrt(2));
-    this.yTurn = this.sketch.QUARTER_PI
   }
 
   arrive(target) {
