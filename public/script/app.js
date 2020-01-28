@@ -1,12 +1,16 @@
-import { Car } from './car';
-import { Grid } from './grid';
+import {
+  Car
+} from './car';
+import {
+  Grid
+} from './grid';
 
 let width = window.innerWidth;
 let height = window.innerHeight;
 let radius = 100;
-let car, grid;
+let grid;
 let xTurn, yTurn;
-
+let cars = new Array();
 
 function init() {
   let myp5 = new p5(s, "canvas");
@@ -23,7 +27,10 @@ var s = (sketch) => {
     sketch.background(0);
     sketch.stroke(0);
 
-    car = new Car(sketch.createVector(0, 0, -500), sketch.createVector(0, 0, 0), sketch);
+    for (let i = 0; i < 3; i++) {
+      cars.push(new Car(sketch.createVector((i * 100), 0, -500), sketch.createVector((i * 100), 0, 250), sketch))
+    }
+
     grid = new Grid(sketch, 600, 600, 50, 12);
   }
 
@@ -34,12 +41,16 @@ var s = (sketch) => {
 
     sketch.rotateX(xTurn);
     sketch.rotateY(yTurn);
-    
+
     grid.draw();
 
-    car.update();
-    car.draw();
+    cars.forEach(function(car) {
+      car.update();
+      car.draw();
+    })
   }
+
 }
+
 
 init();

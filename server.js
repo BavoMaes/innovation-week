@@ -10,10 +10,10 @@ app.get('/', function(req, res) {
 app.get('/Car', function(req, res) {
   res.sendFile(path.join(__dirname + '/public/script/Models/Car.js'));
 });
-
+app.get('/grid', function(req, res) {
   res.sendFile(path.join(__dirname + '/public/script/Models/grid.js'));
 });
-app.get('/grid', function (req, res) {
+
 app.use('/resources', express.static(__dirname + '/public/resources/'));
 
 app.get('/app', function(req, res) {
