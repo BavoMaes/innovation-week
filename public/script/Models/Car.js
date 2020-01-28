@@ -1,10 +1,10 @@
 export class Car {
 
-  constructor(_startPos, _endPos, _sketch, _model) {
+  constructor(_startPos, _endPos, _size, _sketch) {
     this.sketch = _sketch;
     this.startPos = _startPos;
     this.endPos = _endPos;
-    this.model = _model;
+    this.size = _size;
     this.reset();
 
   }
@@ -26,7 +26,7 @@ export class Car {
     this.sketch.fill(this.fillColor);
     this.sketch.translate(this.location);
 
-    this.sketch.box(50, 50, 90);
+    this.sketch.box(this.size);
 
 
     this.sketch.pop()

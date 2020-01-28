@@ -28,7 +28,10 @@ var s = (sketch) => {
     sketch.stroke(0);
 
     for (let i = 0; i < 3; i++) {
-      cars.push(new Car(sketch.createVector((i * 100), 0, -500), sketch.createVector((i * 100), 0, 250), sketch))
+      let startPos = sketch.createVector((i * 100), 0, -500);
+      let dest = sketch.createVector((i * 60), 0, 250);
+      let size = sketch.createVector(50, 50, 90);
+      cars.push(new Car(startPos, dest, size, sketch))
     }
 
     grid = new Grid(sketch, 600, 600, 50, 12);
