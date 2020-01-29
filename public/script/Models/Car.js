@@ -7,14 +7,13 @@ export class Car {
     this.size = _size;
     this.fillColor = this.sketch.color(_color);
     this.heightInBlocks = _heightInBlocks;
-    console.log(this.fillColor.levels[1]);
     this.strokeColor = this.sketch.color(this.fillColor.levels[0] - 50, this.fillColor.levels[1] - 50, this.fillColor.levels[2] - 50)
 
     this.drive = false;
     this.EventpointReached = false;
 
 
-    this.maxSpeed = 15;
+    this.maxSpeed = 20;
     this.maxForce = 0;
     this.desiredSep = this.size.x / 2;
     this.reset();
@@ -84,7 +83,7 @@ export class Car {
     desired.normalize();
 
     if (d < 600) this.EventpointReached = true;
-    if (d <= 1) this.drive = false;
+    if (d <= 10) this.drive = false;
     if (d < 100) {
       // slowing down
       let m = this.sketch.map(d, 0, 100, 0, this.maxSpeed);
