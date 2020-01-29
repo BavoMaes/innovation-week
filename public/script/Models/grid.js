@@ -50,6 +50,12 @@ export class Grid {
         this.sketch.translate(0, 20, this.height / 2 + 50);
         this.sketch.text('Amount of cars', 0, 0);
         this.sketch.pop();
+
+        this.sketch.push();
+        this.sketch.rotateZ(-this.sketch.HALF_PI);
+        this.sketch.translate(this.height / 2, this.height / 2 + 20, - this.height / 2);
+        this.sketch.text('CO2 emission', 0, 0);
+        this.sketch.pop();
     }
 
     outerLines() {
