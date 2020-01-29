@@ -46,21 +46,21 @@ var s = (sketch) => {
     sketch.stroke(0);
 
     grid = new Grid(sketch, 600, 600, 50, 6);
-
+    let size = sketch.createVector(sets.sketch.carsSize.X, sets.sketch.carsSize.Y, sets.sketch.carsSize.Z);
     for (let x = 0; x < sets.sketch.carsCount; x++) {
       for (let y = 0; y < 2; y++) {
-        let size = sketch.createVector(50, 50, 90);
-        let startPos = sketch.createVector(0, 0, -(grid.width - size.z / 2) - (cars.length * size.z));
-        let dest = sketch.createVector((x * size.x) + (grid.width / 2 - size.x * 1.5), 0, (grid.width / 2 - size.z / 2) - (y * size.z));
+
+        let startPos = sketch.createVector(0, size.y * 2, -(grid.width - size.z / 2) - (cars.length * size.z));
+        let dest = sketch.createVector((x * size.x) + (grid.width / 2 - size.x * 1.5), size.y * 2, (grid.width / 2 - size.z / 2) - (y * size.z));
         let color = sets.sketch.colors.Benzine
         cars.push(new Car(startPos, dest, size, color, sketch))
       }
     }
     for (let x = 0; x < sets.sketch.carsCount; x++) {
       for (let y = 0; y < 2; y++) {
-        let size = sketch.createVector(50, 50, 90);
-        let startPos = sketch.createVector(0, 0, -(grid.width - size.z / 2) - (cars.length * size.z));
-        let dest = sketch.createVector((x * size.x) - size.x * 0.5, 0, (grid.width / 2 - size.z / 2) - (y * size.z));
+
+        let startPos = sketch.createVector(0, size.y * 2, -(grid.width - size.z / 2) - (cars.length * size.z));
+        let dest = sketch.createVector((x * size.x) - size.x * 0.5, size.y * 2, (grid.width / 2 - size.z / 2) - (y * size.z));
 
         let color = sets.sketch.colors.Diesel
         cars.push(new Car(startPos, dest, size, color, sketch))
@@ -68,9 +68,9 @@ var s = (sketch) => {
     }
     for (let x = 0; x < sets.sketch.carsCount; x++) {
       for (let y = 0; y < 2; y++) {
-        let size = sketch.createVector(50, 50, 90);
-        let startPos = sketch.createVector((x * 60), 0, -(grid.width - size.z / 2) - (cars.length * size.z));
-        let dest = sketch.createVector((x * size.x) - (grid.width / 2 - size.x * 0.5), 0, (grid.width / 2 - size.z / 2) - (y * size.z));
+
+        let startPos = sketch.createVector((x * 60), size.y * 2, -(grid.width - size.z / 2) - (cars.length * size.z));
+        let dest = sketch.createVector((x * size.x) - (grid.width / 2 - size.x * 0.5), size.y * 2, (grid.width / 2 - size.z / 2) - (y * size.z));
 
         let color = sets.sketch.colors.Electrisch_Hybride
         cars.push(new Car(startPos, dest, size, color, sketch))

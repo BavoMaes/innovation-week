@@ -2,6 +2,11 @@
     "Id": "canvas",
     "sketch": {
       "carsCount": 2,
+      "carsSize":{
+        "X":80,
+        "Y":10,
+        "Z":110
+      },
       "colors":{
         "Benzine": "#D851C7",
         "Diesel": "#84e6ca",
