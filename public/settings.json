@@ -3,14 +3,14 @@
     "sketch": {
       "carsCount": 2,
       "grid":{
-        "width":600,
-        "height":600,
-        "parts":6
+        "width":400,
+        "height":400,
+        "parts":8
       },
       "carsSize":{
-        "X":80,
-        "Y":80,
-        "Z":80
+        "X":50,
+        "Y":50,
+        "Z":50
       },
       "colors":{
         "Benzine": "#D851C7",

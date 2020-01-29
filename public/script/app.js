@@ -50,15 +50,18 @@ var s = (sketch) => {
 
   sketch.setup = function() {
     sketch.createCanvas(width, height, sketch.WEBGL);
+
     sketch.ortho();
 
     sketch.background(0);
     sketch.stroke(0);
 
-    exhaust = new Exhaust(sketch, cars[0]);
+    sketch.textFont(font);
+    sketch.textSize(40);
+    sketch.textAlign(sketch.CENTER, sketch.CENTER);
+
 
     grid = new Grid(sketch, sets.sketch.grid.width, sets.sketch.grid.height, sets.sketch.carsSize.Y, sets.sketch.grid.parts);
-    //  grid = new Grid(sketch, 600, 600, 10, 6);
     let carSize = sketch.createVector(sets.sketch.carsSize.X, sets.sketch.carsSize.Y, sets.sketch.carsSize.Z);
 
     let startColumn1 = sketch.createVector(0, 0, -900);
@@ -73,32 +76,17 @@ var s = (sketch) => {
 
 
     let Diesel = new CarType(startColumn1, endColumn1, carSize, sets.sketch.colors.Diesel, sketch)
-
-
     let Benzine = new CarType(startColumn2, endColumn2, carSize, sets.sketch.colors.Benzine, sketch)
-
-
     let Electrisch_Hybride = new CarType(startColumn3, endColumn3, carSize, sets.sketch.colors.Electrisch_Hybride, sketch)
 
-
-
-
-    // for (let x = 0; x < sets.sketch.carsCount; x++) {
-    //   for (let y = 0; y < 2; y++) {
-    //
-    //     let startPos = sketch.createVector((x * size.x) - (grid.width / 2 - size.x * 0.5), 0, -900);
-    //     let dest = sketch.createVector((x * size.x) - (grid.width / 2 - size.x * 0.5), 0, (grid.width / 2 - size.z / 2) - (y * size.z));
-    //
-    //     let color = sets.sketch.colors.Electrisch_Hybride
-    //     cars.push(new Car(startPos, dest, size, color, sketch))
-    //   }
-    // }
     cars = cars.concat(Diesel.createCarArray(11))
     cars = cars.concat(Benzine.createCarArray(7))
     cars = cars.concat(Electrisch_Hybride.createCarArray(5))
 
     cars[0].startCar();
 
+
+    exhaust = new Exhaust(sketch, cars[0]);
   }
 
 
