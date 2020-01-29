@@ -13,7 +13,7 @@ export class Car {
     this.yTurn = this.sketch.QUARTER_PI;
     this.zTurn = this.sketch.PI;
 
-    this.maxSpeed = this.sketch.random(5, 10);
+    this.maxSpeed = 10;
     this.maxForce = 0;
     this.desiredSep = this.size.x / 2;
     this.reset();
@@ -22,7 +22,7 @@ export class Car {
   reset() {
     this.location = this.startPos
     this.acceleration = this.sketch.createVector(0, 0, 0);
-    this.velocity = this.sketch.createVector(0, 0, this.sketch.random(0, 10));
+    this.velocity = this.sketch.createVector(0, 0, 0);
 
 
   }
