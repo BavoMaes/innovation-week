@@ -8,6 +8,8 @@ export class Grid {
     }
 
     draw() {
+        this.drawLabels();
+
         this.sketch.push();
 
         this.sketch.translate(0, this.boxHeight / 2);
@@ -17,6 +19,42 @@ export class Grid {
 
         this.outerLines();
         this.innerLines();
+
+        this.sketch.push();
+        this.sketch.rotateZ(this.sketch.HALF_PI);
+        this.sketch.translate(-this.height / 2, -this.height / 2, 0);
+        this.outerLines();
+        this.innerLines();
+        this.sketch.pop();
+
+         this.sketch.push();
+         this.sketch.rotateX(this.sketch.HALF_PI);
+         this.sketch.translate(0, -this.height / 2, this.height / 2);
+         this.outerLines();
+         this.innerLines();
+         this.sketch.pop();
+
+        this.sketch.pop();
+    }
+
+    drawLabels() {
+        this.sketch.fill(255);
+
+        this.sketch.push();
+        this.sketch.translate(0, 20, this.height / 2 + 50);
+        this.sketch.text('Type of fuel', 0, 0);
+        this.sketch.pop();
+
+        this.sketch.push();
+        this.sketch.rotateY(-this.sketch.HALF_PI);
+        this.sketch.translate(0, 20, this.height / 2 + 50);
+        this.sketch.text('Amount of cars', 0, 0);
+        this.sketch.pop();
+
+        this.sketch.push();
+        this.sketch.rotateZ(-this.sketch.HALF_PI);
+        this.sketch.translate(this.height / 2, this.height / 2 + 20, - this.height / 2);
+        this.sketch.text('CO2 emission', 0, 0);
         this.sketch.pop();
     }
 
