@@ -2,6 +2,16 @@
     "Id": "canvas",
     "sketch": {
       "carsCount": 2,
+      "grid":{
+        "width":600,
+        "height":600,
+        "parts":6
+      },
+      "carsSize":{
+        "X":80,
+        "Y":80,
+        "Z":80
+      },
       "colors":{
         "Benzine": "#D851C7",
         "Diesel": "#84e6ca",

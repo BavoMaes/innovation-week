@@ -8,12 +8,11 @@ export class Car {
     this.fillColor = this.sketch.color(_color);
     this.strokeColor = this.sketch.color(this.fillColor - 20)
 
+    this.drive = false;
+    this.EventpointReached = false;
 
-    this.xTurn = -this.sketch.atan(1 / this.sketch.sqrt(2));
-    this.yTurn = this.sketch.QUARTER_PI;
-    this.zTurn = this.sketch.PI;
 
-    this.maxSpeed = this.sketch.random(5, 10);
+    this.maxSpeed = 15;
     this.maxForce = 0;
     this.desiredSep = this.size.x / 2;
     this.reset();
@@ -22,13 +21,14 @@ export class Car {
   reset() {
     this.location = this.startPos
     this.acceleration = this.sketch.createVector(0, 0, 0);
-    this.velocity = this.sketch.createVector(0, 0, this.sketch.random(0, 10));
+    this.velocity = this.sketch.createVector(0, 0, 0);
 
 
   }
 
   update() {
-    this.applyforces()
+    if (!this.drive) return;
+    this.applyforces();
 
     this.velocity.add(this.acceleration);
     this.velocity.limit(this.maxSpeed);
@@ -57,18 +57,22 @@ export class Car {
     this.applyForce(arrive);
   }
 
-
-
   applyForce(force) {
     this.acceleration.add(force);
   }
 
+  startCar() {
+    this.drive = true;
+  }
 
 
   arrive(target) {
     let desired = p5.Vector.sub(target, this.location);
     let d = desired.mag();
     desired.normalize();
+
+    if (d < 600) this.EventpointReached = true;
+    if (d <= 0) this.drive = false;
     if (d < 100) {
       // slowing down
       let m = this.sketch.map(d, 0, 100, 0, this.maxSpeed);
@@ -77,17 +81,6 @@ export class Car {
       // maxSpeed
       desired.mult(this.maxSpeed);
     }
-
-    let steer = p5.Vector.sub(desired, this.velocity);
-    steer.limit(this.maxforce);
-    return steer;
-  }
-
-
-  seek(target) {
-    let desired = p5.Vector.sub(target, this.position);
-    desired.normalize();
-    desired.mult(this.maxSpeed);
 
     let steer = p5.Vector.sub(desired, this.velocity);
     steer.limit(this.maxforce);
