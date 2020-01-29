@@ -48,14 +48,11 @@ export class Car {
     this.sketch.strokeWeight(2);
     this.sketch.stroke(this.strokeColor);
     this.sketch.fill(this.fillColor);
-    this.sketch.translate(this.location);
-    this.sketch.box(this.size);
-    this.exhaust.draw();
-
 
     this.sketch.push();
     this.sketch.fill(this.fillColor);
     this.sketch.translate(this.location);
+    this.exhaust.draw();
     this.sketch.box(this.size);
     this.sketch.pop()
     if (!this.stoped) return
