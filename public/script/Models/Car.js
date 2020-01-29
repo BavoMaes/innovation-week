@@ -14,7 +14,7 @@ export class Car {
 
     this.drive = false;
     this.EventpointReached = false;
-    this.exhaust = new Exhaust(this.sketch, this);
+    this.exhaust = new Exhaust(this.sketch, this, 6);
 
 
     this.maxSpeed = 15;
