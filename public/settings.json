@@ -5,12 +5,12 @@
       "grid":{
         "width":400,
         "height":400,
-        "parts":8
+        "parts":10
       },
       "carsSize":{
-        "X":50,
-        "Y":50,
-        "Z":50
+        "X":40,
+        "Y":40,
+        "Z":40
       },
       "colors":{
         "Benzine": "#D851C7",
