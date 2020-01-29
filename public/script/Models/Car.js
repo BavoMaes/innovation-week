@@ -14,6 +14,7 @@ export class Car {
     this.strokeColor = this.sketch.color(this.fillColor.levels[0] - 50, this.fillColor.levels[1] - 50, this.fillColor.levels[2] - 50)
 
     this.drive = false;
+    this.stoped = false;
     this.EventpointReached = false;
     this.exhaust = new Exhaust(this.sketch, this, 6);
 
@@ -43,6 +44,7 @@ export class Car {
   }
 
   draw() {
+    if (!this.stoped && !this.drive) return;
     this.sketch.strokeWeight(2);
     this.sketch.stroke(this.strokeColor);
     this.sketch.fill(this.fillColor);
@@ -56,7 +58,7 @@ export class Car {
     this.sketch.translate(this.location);
     this.sketch.box(this.size);
     this.sketch.pop()
-    if (this.drive) return
+    if (!this.stoped) return
     for (let i = 1; i < this.heightInBlocks; i++) {
       this.sketch.push()
       this.sketch.noFill();
@@ -82,6 +84,11 @@ export class Car {
 
   startCar() {
     this.drive = true;
+
+  }
+  stopCar() {
+
+    this.stoped = true;
   }
 
 
@@ -91,7 +98,7 @@ export class Car {
     desired.normalize();
 
     if (d < 600) this.EventpointReached = true;
-    if (d <= 10) this.drive = false;
+    if (d <= 10) this.stopCar();
     if (d < 100) {
       // slowing down
       let m = this.sketch.map(d, 0, 100, 0, this.maxSpeed);
