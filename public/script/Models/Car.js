@@ -59,7 +59,7 @@ export class Car {
     for (let i = 1; i < this.heightInBlocks; i++) {
       this.sketch.push()
       this.sketch.noFill();
-      this.sketch.stroke(this.sketch.color(this.fillColor.levels[0], this.fillColor.levels[1], this.fillColor.levels[2], 100));
+      this.sketch.stroke(this.sketch.color(this.fillColor.levels[0], this.fillColor.levels[1], this.fillColor.levels[2], 20));
       this.sketch.translate(this.location.x, this.location.y - this.size.y * i, this.location.z);
       this.sketch.box(this.size);
       this.sketch.pop()
