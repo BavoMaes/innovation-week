@@ -76,7 +76,7 @@ var s = (sketch) => {
         cars.push(new Car(startPos, dest, size, color, sketch))
       }
     }
-
+    cars[0].startCar();
 
   }
 
@@ -89,6 +89,12 @@ var s = (sketch) => {
     sketch.rotateY(yTurn);
 
     grid.draw();
+
+    console.log(cars[0])
+
+    for (let i = 1; i < cars.length; i++) {
+      if (cars[i - 1].EventpointA) cars[i].startCar()
+    }
 
     cars.forEach(function(car) {
       car.update();
