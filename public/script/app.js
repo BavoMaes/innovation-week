@@ -17,6 +17,7 @@ let radius = 100;
 let grid;
 let xTurn, yTurn;
 let cars = new Array();
+let waitingQue = new Array();
 
 let settingrequest = new XMLHttpRequest();
 settingrequest.open('GET', './settings', true);
@@ -45,13 +46,14 @@ var s = (sketch) => {
     sketch.background(0);
     sketch.stroke(0);
 
-    grid = new Grid(sketch, 600, 600, 50, 6);
+
     let size = sketch.createVector(sets.sketch.carsSize.X, sets.sketch.carsSize.Y, sets.sketch.carsSize.Z);
+    grid = new Grid(sketch, 600, 600, size.y, 6);
     for (let x = 0; x < sets.sketch.carsCount; x++) {
       for (let y = 0; y < 2; y++) {
 
-        let startPos = sketch.createVector(0, size.y * 2, -(grid.width - size.z / 2) - (cars.length * size.z));
-        let dest = sketch.createVector((x * size.x) + (grid.width / 2 - size.x * 1.5), size.y * 2, (grid.width / 2 - size.z / 2) - (y * size.z));
+        let startPos = sketch.createVector((x * size.x) + (grid.width / 2 - size.x * 1.5), 0, -900);
+        let dest = sketch.createVector((x * size.x) + (grid.width / 2 - size.x * 1.5), 0, (grid.width / 2 - size.z / 2) - (y * size.z));
         let color = sets.sketch.colors.Benzine
         cars.push(new Car(startPos, dest, size, color, sketch))
       }
@@ -59,8 +61,8 @@ var s = (sketch) => {
     for (let x = 0; x < sets.sketch.carsCount; x++) {
       for (let y = 0; y < 2; y++) {
 
-        let startPos = sketch.createVector(0, size.y * 2, -(grid.width - size.z / 2) - (cars.length * size.z));
-        let dest = sketch.createVector((x * size.x) - size.x * 0.5, size.y * 2, (grid.width / 2 - size.z / 2) - (y * size.z));
+        let startPos = sketch.createVector((x * size.x) - size.x * 0.5, 0, -900);
+        let dest = sketch.createVector((x * size.x) - size.x * 0.5, 0, (grid.width / 2 - size.z / 2) - (y * size.z));
 
         let color = sets.sketch.colors.Diesel
         cars.push(new Car(startPos, dest, size, color, sketch))
@@ -69,8 +71,8 @@ var s = (sketch) => {
     for (let x = 0; x < sets.sketch.carsCount; x++) {
       for (let y = 0; y < 2; y++) {
 
-        let startPos = sketch.createVector((x * 60), size.y * 2, -(grid.width - size.z / 2) - (cars.length * size.z));
-        let dest = sketch.createVector((x * size.x) - (grid.width / 2 - size.x * 0.5), size.y * 2, (grid.width / 2 - size.z / 2) - (y * size.z));
+        let startPos = sketch.createVector((x * size.x) - (grid.width / 2 - size.x * 0.5), 0, -900);
+        let dest = sketch.createVector((x * size.x) - (grid.width / 2 - size.x * 0.5), 0, (grid.width / 2 - size.z / 2) - (y * size.z));
 
         let color = sets.sketch.colors.Electrisch_Hybride
         cars.push(new Car(startPos, dest, size, color, sketch))
@@ -93,7 +95,7 @@ var s = (sketch) => {
     console.log(cars[0])
 
     for (let i = 1; i < cars.length; i++) {
-      if (cars[i - 1].EventpointA) cars[i].startCar()
+      if (cars[i - 1].EventpointReached) cars[i].startCar()
     }
 
     cars.forEach(function(car) {

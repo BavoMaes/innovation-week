@@ -9,13 +9,10 @@ export class Car {
     this.strokeColor = this.sketch.color(this.fillColor - 20)
 
     this.drive = false;
-    this.EventpointA = false;
+    this.EventpointReached = false;
 
-    this.xTurn = -this.sketch.atan(1 / this.sketch.sqrt(2));
-    this.yTurn = this.sketch.QUARTER_PI;
-    this.zTurn = this.sketch.PI;
 
-    this.maxSpeed = 10;
+    this.maxSpeed = 15;
     this.maxForce = 0;
     this.desiredSep = this.size.x / 2;
     this.reset();
@@ -74,7 +71,7 @@ export class Car {
     let d = desired.mag();
     desired.normalize();
 
-    if (d < 400) this.EventpointA = true;
+    if (d < 600) this.EventpointReached = true;
     if (d <= 0) this.drive = false;
     if (d < 100) {
       // slowing down
