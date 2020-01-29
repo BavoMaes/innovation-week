@@ -14,7 +14,7 @@ export class Exhaust {
   initParticles() {
     let particles = [];
     for (let i = 0; i < 30; i++) {
-      particles.push(new Particle(this.sketch, this.car.fillColor, 3, 300));
+      particles.push(new Particle(this.sketch, this.car.fillColor, 6, 300));
     }
     return particles;
   }

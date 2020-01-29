@@ -17,7 +17,7 @@ export class Particle {
         this.sketch.normalMaterial();
         this.sketch.fill(this.color);
         this.sketch.translate(this.position);
-        this.sketch.sphere(this.size);
+        this.sketch.box(this.size);
         this.applyForce(this.acceleration);
         this.checkMaxHeight();
 
