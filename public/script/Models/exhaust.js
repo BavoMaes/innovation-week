@@ -3,18 +3,19 @@ import {
 } from './particle';
 
 export class Exhaust {
-  constructor(_sketch, _car) {
+  constructor(_sketch, _car, _particleAmount) {
     this.sketch = _sketch;
     this.car = _car;
+    this.particleAmount = _particleAmount;
     this.height = 0
     this.velocity = 0;
-    this.particles = this.initParticles();
+    this.particles = this.initParticles(this.particleAmount);
   }
 
-  initParticles() {
+  initParticles(particleAmount) {
     let particles = [];
-    for (let i = 0; i < 30; i++) {
-      particles.push(new Particle(this.sketch, this.car.fillColor, 3, 300));
+    for (let i = 0; i < particleAmount; i++) {
+      particles.push(new Particle(this.sketch, this.car.fillColor, 1, 300, this.car.size.x / 2));
     }
     return particles;
   }
