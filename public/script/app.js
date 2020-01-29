@@ -80,7 +80,7 @@ var s = (sketch) => {
       //}
     }
 
-    grid = new Grid(sketch, 600, 600, 50, 8);
+    grid = new Grid(sketch, 400, 400, 50, 8);
     exhaust = new Exhaust(sketch, cars[0]);
   }
 
@@ -91,6 +91,7 @@ var s = (sketch) => {
 
     sketch.rotateX(xTurn);
     sketch.rotateY(yTurn);
+    sketch.translate(0, 150, 0);
 
     grid.draw();
     exhaust.draw();
