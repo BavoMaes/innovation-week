@@ -1,0 +1,11 @@
+{
+    "Id": "canvas",
+    "sketch": {
+      "carsCount": 2,
+      "colors":{
+        "Benzine": "#D851C7",
+        "Diesel": "#84e6ca",
+        "Electrisch_Hybride": "#284fc6"
+      }
+    }
+}
