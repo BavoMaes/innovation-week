@@ -8,6 +8,8 @@ export class Grid {
     }
 
     draw() {
+        this.drawLabels();
+
         this.sketch.push();
 
         this.sketch.translate(0, this.boxHeight / 2);
@@ -17,6 +19,21 @@ export class Grid {
 
         this.outerLines();
         this.innerLines();
+        this.sketch.pop();
+    }
+
+    drawLabels() {
+        this.sketch.fill(255);
+
+        this.sketch.push();
+        this.sketch.translate(0, 20, this.height / 2 + 50);
+        this.sketch.text('Type brandstof', 0, 0);
+        this.sketch.pop();
+
+        this.sketch.push();
+        this.sketch.rotateY(-this.sketch.HALF_PI);
+        this.sketch.translate(0, 20, this.height / 2 + 50);
+        this.sketch.text("Aantal auto's", 0, 0);
         this.sketch.pop();
     }
 

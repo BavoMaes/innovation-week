@@ -19,6 +19,7 @@ let grid;
 let exhaust;
 let xTurn, yTurn;
 let cars = new Array();
+let font;
 
 let settingrequest = new XMLHttpRequest();
 settingrequest.open('GET', './settings', true);
@@ -40,12 +41,20 @@ var s = (sketch) => {
   xTurn = -sketch.atan(1 / sketch.sqrt(2));
   yTurn = sketch.QUARTER_PI;
 
+  sketch.preload = function() {
+    font = sketch.loadFont('./resources/Roboto-Bold.ttf');
+  }
+
   sketch.setup = function() {
     sketch.createCanvas(width, height, sketch.WEBGL);
     sketch.ortho();
 
     sketch.background(0);
     sketch.stroke(0);
+
+    sketch.textFont(font);
+    sketch.textSize(40);
+    sketch.textAlign(sketch.CENTER, sketch.CENTER);
 
     for (let i = 0; i < sets.sketch.carsCount; i++) {
       let startPos = sketch.createVector((i * 60), 0, -500 + sketch.random(10, 100));
@@ -71,7 +80,7 @@ var s = (sketch) => {
       //}
     }
 
-    grid = new Grid(sketch, 600, 600, 50, 9);
+    grid = new Grid(sketch, 600, 600, 50, 8);
     exhaust = new Exhaust(sketch, cars[0]);
   }
 
