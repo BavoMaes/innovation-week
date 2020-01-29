@@ -1,18 +1,20 @@
 export class Car {
 
-  constructor(_startPos, _endPos, _size, _color, _sketch) {
+  constructor(_startPos, _endPos, _size, _color, _heightInBlocks, _sketch) {
     this.sketch = _sketch;
     this.startPos = _startPos;
     this.endPos = _endPos;
     this.size = _size;
     this.fillColor = this.sketch.color(_color);
-    this.strokeColor = this.sketch.color(this.fillColor - 20)
+    this.heightInBlocks = _heightInBlocks;
+    this.strokeColor = this.sketch.color(this.fillColor.levels[0] - 50, this.fillColor.levels[1] - 50, this.fillColor.levels[2] - 50)
 
     this.drive = false;
+    this.stoped = false;
     this.EventpointReached = false;
 
 
-    this.maxSpeed = 15;
+    this.maxSpeed = 20;
     this.maxForce = 0;
     this.desiredSep = this.size.x / 2;
     this.reset();
@@ -37,16 +39,27 @@ export class Car {
   }
 
   draw() {
-    this.sketch.push();
-
+    if (!this.stoped && !this.drive) return;
     this.sketch.strokeWeight(2);
     this.sketch.stroke(this.strokeColor);
     this.sketch.fill(this.fillColor);
+
+
+    this.sketch.push();
+    this.sketch.fill(this.fillColor);
     this.sketch.translate(this.location);
     this.sketch.box(this.size);
-
-
     this.sketch.pop()
+    if (!this.stoped) return
+    for (let i = 1; i < this.heightInBlocks; i++) {
+      this.sketch.push()
+      this.sketch.noFill();
+      this.sketch.stroke(this.sketch.color(this.fillColor.levels[0], this.fillColor.levels[1], this.fillColor.levels[2], 100));
+      this.sketch.translate(this.location.x, this.location.y - this.size.y * i, this.location.z);
+      this.sketch.box(this.size);
+      this.sketch.pop()
+    }
+
 
   }
 
@@ -63,6 +76,11 @@ export class Car {
 
   startCar() {
     this.drive = true;
+
+  }
+  stopCar() {
+
+    this.stoped = true;
   }
 
 
@@ -72,7 +90,7 @@ export class Car {
     desired.normalize();
 
     if (d < 600) this.EventpointReached = true;
-    if (d <= 0) this.drive = false;
+    if (d <= 10) this.stopCar();
     if (d < 100) {
       // slowing down
       let m = this.sketch.map(d, 0, 100, 0, this.maxSpeed);
