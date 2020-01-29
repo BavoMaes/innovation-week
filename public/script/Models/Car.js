@@ -1,3 +1,7 @@
+import {
+  Exhaust
+} from './exhaust'
+
 export class Car {
 
   constructor(_startPos, _endPos, _size, _color, _sketch) {
@@ -10,6 +14,7 @@ export class Car {
 
     this.drive = false;
     this.EventpointReached = false;
+    this.exhaust = new Exhaust(this.sketch, this);
 
 
     this.maxSpeed = 15;
@@ -44,6 +49,7 @@ export class Car {
     this.sketch.fill(this.fillColor);
     this.sketch.translate(this.location);
     this.sketch.box(this.size);
+    this.exhaust.draw();
 
 
     this.sketch.pop()

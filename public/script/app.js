@@ -9,17 +9,12 @@ import {
   CarType
 } from './CarType';
 
-import {
-  Exhaust
-} from './exhaust'
-
 let sets = {}
 
 let width = window.innerWidth;
 let height = window.innerHeight;
 let radius = 100;
 let grid;
-let exhaust;
 let xTurn, yTurn;
 let cars = new Array();
 let font;
@@ -84,9 +79,6 @@ var s = (sketch) => {
     cars = cars.concat(Electrisch_Hybride.createCarArray(5))
 
     cars[0].startCar();
-
-
-    exhaust = new Exhaust(sketch, cars[0]);
   }
 
 
@@ -99,7 +91,6 @@ var s = (sketch) => {
     sketch.translate(0, 150, 0);
 
     grid.draw();
-    exhaust.draw();
 
 
 
