@@ -6,15 +6,17 @@ import {
   Grid
 } from './grid';
 
-
+import {
+  Exhaust
+} from './exhaust'
 
 let sets = {}
-
 
 let width = window.innerWidth;
 let height = window.innerHeight;
 let radius = 100;
 let grid;
+let exhaust;
 let xTurn, yTurn;
 let cars = new Array();
 
@@ -70,6 +72,7 @@ var s = (sketch) => {
     }
 
     grid = new Grid(sketch, 600, 600, 50, 9);
+    exhaust = new Exhaust(sketch, cars[0]);
   }
 
 
@@ -81,6 +84,7 @@ var s = (sketch) => {
     sketch.rotateY(yTurn);
 
     grid.draw();
+    exhaust.draw();
 
     cars.forEach(function(car) {
       car.update();
