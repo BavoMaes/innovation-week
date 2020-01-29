@@ -4,10 +4,9 @@ export class Particle {
         this.color = _color;
         this.size = _size;
         this.height = _height;
-        this.lightness = parseFloat((Math.random() * (-0.2 - -0.01) + -0.01).toFixed(2));
-        this.exhaust = parseFloat((Math.random() * (-0.1 - 0.1) + -0.1).toFixed(2));
+        this.lightness = this.sketch.random(-0.2, -0.01);
         this.acceleration = this.sketch.createVector(0, this.lightness, 0);
-        this.velocity = this.sketch.createVector(this.exhaust, 0, 0);
+        this.velocity = this.sketch.createVector(0, 0, 0);
         this.position = this.sketch.createVector(0, 0, 0);
     }
 
