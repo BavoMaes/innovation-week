@@ -17,7 +17,7 @@ export class CarType {
 
   }
 
-  createCarArray(size) {
+  createCarArray(size, height) {
     let sizeIsEven = false;
     let cars = new Array();
     if (size % 2 == 0) sizeIsEven = true;
@@ -28,7 +28,7 @@ export class CarType {
             console.log("cars");
             let startPos = this.sketch.createVector((x * this.carSize.x) + this.startColumn.x, this.startColumn.y, this.startColumn.z);
             let dest = this.sketch.createVector((x * this.carSize.x) + this.endColumn.x, this.endColumn.y, this.endColumn.z - (y * this.carSize.z));
-            cars.push(new Car(startPos, dest, this.carSize, this.color, this.sketch))
+            cars.push(new Car(startPos, dest, this.carSize, this.color, height, this.sketch))
           }
         }
       } else {
@@ -36,7 +36,7 @@ export class CarType {
           console.log("cars");
           let startPos = this.sketch.createVector((x * this.carSize.x) + this.startColumn.x, this.startColumn.y, this.startColumn.z);
           let dest = this.sketch.createVector((x * this.carSize.x) + this.endColumn.x, this.endColumn.y, this.endColumn.z - (y * this.carSize.z));
-          cars.push(new Car(startPos, dest, this.carSize, this.color, this.sketch))
+          cars.push(new Car(startPos, dest, this.carSize, this.color, height, this.sketch))
         }
       }
     }
