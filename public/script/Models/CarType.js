@@ -17,6 +17,7 @@ export class CarType {
 
   }
 
+
   createCarArray(size, height) {
     let sizeIsEven = false;
     let cars = new Array();

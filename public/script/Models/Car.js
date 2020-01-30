@@ -8,28 +8,29 @@ export class Car {
     this.sketch = _sketch;
     this.startPos = _startPos;
     this.endPos = _endPos;
+
     this.size = _size;
     this.fillColor = this.sketch.color(_color);
-    this.heightInBlocks = _heightInBlocks;
     this.strokeColor = this.sketch.color(this.fillColor.levels[0] - 50, this.fillColor.levels[1] - 50, this.fillColor.levels[2] - 50)
+    this.ghostStrokeColor = this.sketch.color(this.fillColor.levels[0], this.fillColor.levels[1], this.fillColor.levels[2], 20)
 
     this.drive = false;
     this.stoped = false;
     this.EventpointReached = false;
-    this.exhaust = new Exhaust(this.sketch, this, 6);
 
-
-    this.maxSpeed = 20;
+    this.maxSpeed = 25;
     this.maxForce = 0;
-    this.desiredSep = this.size.x / 2;
+
     this.reset();
+
+    this.exhaust = new Exhaust(this.sketch, this, 3);
   }
 
-  reset() {
+  reset(heightInBlocks) {
     this.location = this.startPos
     this.acceleration = this.sketch.createVector(0, 0, 0);
     this.velocity = this.sketch.createVector(0, 0, 0);
-
+    this.heightInBlocks = heightInBlocks;
 
   }
 
@@ -59,7 +60,7 @@ export class Car {
     for (let i = 1; i < this.heightInBlocks; i++) {
       this.sketch.push()
       this.sketch.noFill();
-      this.sketch.stroke(this.sketch.color(this.fillColor.levels[0], this.fillColor.levels[1], this.fillColor.levels[2], 20));
+      this.sketch.stroke(this.ghostStrokeColor);
       this.sketch.translate(this.location.x, this.location.y - this.size.y * i, this.location.z);
       this.sketch.box(this.size);
       this.sketch.pop()
