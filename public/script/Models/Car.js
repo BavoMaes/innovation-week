@@ -25,7 +25,7 @@ export class Car {
 
     this.reset(_heightInBlocks);
 
-    this.exhaust = new Exhaust(this.sketch, this, 5);
+    this.exhaust = new Exhaust(this.sketch, this, 4);
   }
 
   reset(heightInBlocks) {
@@ -63,7 +63,7 @@ export class Car {
     if (!isMain) this.sketch.noFill();
     this.sketch.stroke(strokeColor);
     this.sketch.translate(loc);
-    if (isMain) this.exhaust.draw();
+    if (isMain && this.stoped) this.exhaust.draw();
     this.sketch.box(this.size);
     this.sketch.pop()
   }
