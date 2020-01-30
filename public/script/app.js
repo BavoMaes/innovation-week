@@ -57,7 +57,8 @@ var s = (sketch) => {
   sketch.setup = function() {
 
 
-    console.log(myData.lookupTable(2010));
+    console.log(myData.lookupCO2(2010));
+    console.log(myData.lookupWagenPark(2010));
 
     sketch.createCanvas(width, height, sketch.WEBGL);
 

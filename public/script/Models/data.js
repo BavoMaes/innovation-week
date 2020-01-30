@@ -2,15 +2,20 @@ export class Data {
 
   constructor(_sketch) {
     this.sketch = _sketch
-    this.data = this.sketch.loadTable(
+    this.WagenparkPerBrandstofsoort = this.sketch.loadTable(
       './resources/data/WagenparkPerBrandstofsoort.csv',
+      'csv',
+      'header');
+
+    this.CO2UitstoorPerBrandstofsoort = this.sketch.loadTable(
+      './resources/data/CO2UitstoorPerBrandstofsoort.csv',
       'csv',
       'header');
   }
 
 
-  lookupTable(jaar) {
-    let row = this.data.findRow(jaar.toString(), 'Jaar');
+  lookupWagenPark(jaar) {
+    let row = this.WagenparkPerBrandstofsoort.findRow(jaar.toString(), 'Jaar');
 
     var obj = {
       jaar: row.getString('Jaar'),
@@ -25,8 +30,8 @@ export class Data {
     return obj;
   }
 
-  lookupTable2(jaar) {
-    let row = this.data.findRow(jaar.toString(), 'Jaar');
+  lookupCO2(jaar) {
+    let row = this.CO2UitstoorPerBrandstofsoort.findRow(jaar.toString(), 'Jaar');
 
     var obj = {
       jaar: row.getString('Jaar'),

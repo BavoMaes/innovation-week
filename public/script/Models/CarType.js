@@ -26,7 +26,6 @@ export class CarType {
       if (!sizeIsEven) {
         for (let y = 0; y < size / 2; y++) {
           if (x != 1 || y != Math.round(size / 2) - 1) {
-            console.log("cars");
             let startPos = this.sketch.createVector((x * this.carSize.x) + this.startColumn.x, this.startColumn.y, this.startColumn.z);
             let dest = this.sketch.createVector((x * this.carSize.x) + this.endColumn.x, this.endColumn.y, this.endColumn.z - (y * this.carSize.z));
             cars.push(new Car(startPos, dest, this.carSize, this.color, height, this.sketch))
@@ -34,7 +33,6 @@ export class CarType {
         }
       } else {
         for (let y = 0; y < size / 2; y++) {
-          console.log("cars");
           let startPos = this.sketch.createVector((x * this.carSize.x) + this.startColumn.x, this.startColumn.y, this.startColumn.z);
           let dest = this.sketch.createVector((x * this.carSize.x) + this.endColumn.x, this.endColumn.y, this.endColumn.z - (y * this.carSize.z));
           cars.push(new Car(startPos, dest, this.carSize, this.color, height, this.sketch))
