@@ -75,6 +75,7 @@ var s = (sketch) => {
   year = 2002;
   xTurn = -sketch.atan(1 / sketch.sqrt(2)) + 0.05;
   yTurn = sketch.QUARTER_PI;
+  let invisStartPos = sketch.createVector(0, 0, -700)
 
   sketch.preload = function() {
     font = sketch.loadFont('./resources/BebasNeue-Regular.ttf');
@@ -112,13 +113,13 @@ var s = (sketch) => {
   }
 
   createCarTypeInit = () => {
-    let startColumn1 = sketch.createVector(0, 0, -700);
+    let startColumn1 = invisStartPos
     let endColumn1 = sketch.createVector(-(mainGrid.width / 2 - carSize.x * 0.5), 0, (mainGrid.width / 2 - carSize.z / 2));
 
-    let startColumn2 = sketch.createVector(-carSize.x, 0, -700);
+    let startColumn2 = invisStartPos
     let endColumn2 = sketch.createVector(-carSize.x - carSize.x * 0.5, 0, (mainGrid.width / 2 - carSize.z / 2));
 
-    let startColumn3 = sketch.createVector(0, 0, -700);
+    let startColumn3 = invisStartPos
     let endColumn3 = sketch.createVector((mainGrid.width / 2 - carSize.x * 3.5), 0, (mainGrid.width / 2 - carSize.z / 2));
 
     diesel = new CarType(startColumn1, endColumn1, sets.sketch.columnCount, carSize, sets.sketch.colors.Diesel, mySound, sketch)

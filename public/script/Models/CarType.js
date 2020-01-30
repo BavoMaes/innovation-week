@@ -29,7 +29,6 @@ export class CarType {
       for (let x = 0; x < this.row; x++) {
         startPos = this.sketch.createVector((x * this.carSize.x) + this.startColumn.x, this.startColumn.y, this.startColumn.z);
         dest = this.sketch.createVector((x * this.carSize.x) + this.endColumn.x, this.endColumn.y, this.endColumn.z - (y * this.carSize.z));
-        console.log(counter < size)
         if (counter++ < size) cars.push(new Car(startPos, dest, this.carSize, this.color, height, this.sound, this.sketch))
       }
 
