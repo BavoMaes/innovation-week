@@ -4,14 +4,14 @@
       "columnCount": 4,
 
       "grid":{
-        "width":525,
-        "height":525,
+        "width":364,
+        "height":364,
         "parts":14
       },
       "carsSize":{
-        "X":38,
-        "Y":38,
-        "Z":38
+        "X":26,
+        "Y":26,
+        "Z":26
       },
       "colors":{
         "Benzine": "#D851C7",
