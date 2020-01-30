@@ -31,6 +31,10 @@ app.get('/exhaust', function(req, res) {
   res.sendFile(path.join(__dirname + '/public/script/models/exhaust.js'));
 });
 
+app.get('/css', function (req, res) {
+  res.sendFile(path.join(__dirname + '/public/css/style.css'));
+});
+
 app.use('/resources', express.static(__dirname + '/public/resources/'));
 
 app.get('/app', function(req, res) {
@@ -40,9 +44,6 @@ app.get('/app', function(req, res) {
 app.get('/data', function(req, res) {
   res.sendFile(path.join(__dirname + '/public/script/models/data.js'));
 });
-
-
-
 
 let init = () => {
   app.listen(port, () => console.log(`App listening on port ${port}!`));

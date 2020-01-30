@@ -40,6 +40,32 @@ function init() {
   let myp5 = new p5(s, sets.Id);
 }
 
+document.getElementById("minus").addEventListener("click", minusYear);
+document.getElementById("plus").addEventListener("click", plusYear);
+
+function minusYear() {
+  let currentYear = parseInt(document.getElementById("year").innerHTML);
+  if (currentYear <= 2002) {
+    console.error("Year can't be smaller than 2002");
+  } else {
+    changeYear(currentYear, -1);
+  }
+}
+
+function plusYear() {
+    let currentYear = parseInt(document.getElementById("year").innerHTML);
+    if (currentYear >= 2018) {
+      console.error("Year can't be bigger than 2018");
+    } else {
+      changeYear(currentYear, 1);
+    }
+}
+
+function changeYear(currentYear, change) {
+  let newYear = currentYear + change;
+  document.getElementById("year").innerHTML = newYear;
+}
+
 var s = (sketch) => {
   year = 2002;
   xTurn = -sketch.atan(1 / sketch.sqrt(2)) + 0.05;
