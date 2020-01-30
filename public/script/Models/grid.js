@@ -43,12 +43,34 @@ export class Grid {
         this.sketch.push();
         this.sketch.translate(0, 20, this.height / 2 + 50);
         this.sketch.text('Type of fuel', 0, 0);
+
+        this.sketch.noStroke();
+        this.sketch.textSize(20);
+
+        this.sketch.fill("#84e6ca");
+        this.sketch.text('Diesel', 0, 40);
+        this.sketch.rect(-60,35,20,20);
+
+        this.sketch.fill("#D851C7");
+        this.sketch.text('Benzine', 0, 65);
+        this.sketch.rect(-60,60,20,20);
+
+        this.sketch.fill("#284fc6");
+        this.sketch.text('Electrisch/Hybride', 30, 93);
+        this.sketch.rect(-60,85,20,20);
+
         this.sketch.pop();
 
         this.sketch.push();
         this.sketch.rotateY(-this.sketch.HALF_PI);
         this.sketch.translate(0, 20, this.height / 2 + 50);
         this.sketch.text('Amount of cars', 0, 0);
+
+        this.sketch.noStroke();
+        this.sketch.textSize(20);
+        this.sketch.rect(-30,30,20,20);
+        this.sketch.text(': 20 000 cars', 40,40)
+
         this.sketch.pop();
 
         this.sketch.push();
@@ -56,6 +78,8 @@ export class Grid {
         this.sketch.translate(this.height / 2, this.height / 2 + 20, - this.height / 2);
         this.sketch.text('CO2 emission', 0, 0);
         this.sketch.pop();
+
+        
     }
 
     outerLines() {
