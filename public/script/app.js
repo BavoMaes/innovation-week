@@ -27,6 +27,7 @@ let font;
 let myData, mySound;
 let year;
 let settingrequest = new XMLHttpRequest();
+let carsReset
 settingrequest.open('GET', './settings', true);
 settingrequest.onload = function() {
   //load settings
@@ -53,17 +54,18 @@ function minusYear() {
 }
 
 function plusYear() {
-    let currentYear = parseInt(document.getElementById("year").innerHTML);
-    if (currentYear >= 2018) {
-      console.error("Year can't be bigger than 2018");
-    } else {
-      changeYear(currentYear, 1);
-    }
+  let currentYear = parseInt(document.getElementById("year").innerHTML);
+  if (currentYear >= 2018) {
+    console.error("Year can't be bigger than 2018");
+  } else {
+    changeYear(currentYear, 1);
+  }
 }
 
 function changeYear(currentYear, change) {
   let newYear = currentYear + change;
   document.getElementById("year").innerHTML = newYear;
+  carsReset(newYear);
 }
 
 var s = (sketch) => {
@@ -135,8 +137,9 @@ var s = (sketch) => {
   }
 
 
-  let carsReset = function(jaar) {
+  carsReset = function(jaar) {
     let carData = myData.getBlockSize(jaar);
+    cars.length = 0
     cars = cars.concat(diesel.createCarArray(carData[0].amount, carData[0].co2))
     cars = cars.concat(benzine.createCarArray(carData[1].amount, carData[1].co2))
     cars = cars.concat(electrischHybride.createCarArray(carData[2].amount, carData[2].co2))
