@@ -89,7 +89,7 @@ var s = (sketch) => {
     carSize = sketch.createVector(sets.sketch.carsSize.X, sets.sketch.carsSize.Y, sets.sketch.carsSize.Z);
     mainGrid = new Grid(sketch, sets.sketch.grid.width, sets.sketch.grid.height, sets.sketch.carsSize.Y, sets.sketch.grid.parts);
     createCarTypeInit()
-
+    carsReset(year)
   }
 
   sketch.draw = function() {
@@ -101,7 +101,6 @@ var s = (sketch) => {
   sketchInit = () => {
     mySound.setVolume(0.5);
     sketch.createCanvas(width, height, sketch.WEBGL);
-
     sketch.ortho();
 
     sketch.background(0);
