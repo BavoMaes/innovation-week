@@ -100,30 +100,22 @@ var s = (sketch) => {
     sketch.textSize(40);
     sketch.textAlign(sketch.CENTER, sketch.CENTER);
 
-
-    grid = new Grid(sketch, sets.sketch.grid.width, sets.sketch.grid.height, sets.sketch.carsSize.Y, sets.sketch.grid.parts);
     let carSize = sketch.createVector(sets.sketch.carsSize.X, sets.sketch.carsSize.Y, sets.sketch.carsSize.Z);
 
-    let startColumn1 = sketch.createVector(0, 0, -900);
+    let startColumn1 = sketch.createVector(0, 0, -700);
     let endColumn1 = sketch.createVector(-(grid.width / 2 - carSize.x * 0.5), 0, (grid.width / 2 - carSize.z / 2));
 
-    let startColumn2 = sketch.createVector(-carSize.x * 0.5, 0, -900);
+    let startColumn2 = sketch.createVector(-carSize.x * 0.5, 0, -700);
     let endColumn2 = sketch.createVector(-carSize.x * 0.5, 0, (grid.width / 2 - carSize.z / 2));
 
-    let startColumn3 = sketch.createVector(0, 0, -900);
+    let startColumn3 = sketch.createVector(0, 0, -700);
     let endColumn3 = sketch.createVector((grid.width / 2 - carSize.x * 1.5), 0, (grid.width / 2 - carSize.z / 2));
-
-
 
     let Diesel = new CarType(startColumn1, endColumn1, carSize, sets.sketch.colors.Diesel, sketch)
     let Benzine = new CarType(startColumn2, endColumn2, carSize, sets.sketch.colors.Benzine, sketch)
     let Electrisch_Hybride = new CarType(startColumn3, endColumn3, carSize, sets.sketch.colors.Electrisch_Hybride, sketch)
 
-    cars = cars.concat(Diesel.createCarArray(18, 6))
-    cars = cars.concat(Benzine.createCarArray(7, 4))
-    cars = cars.concat(Electrisch_Hybride.createCarArray(5, 2))
-
-    cars[0].startCar();
+    grid = new Grid(sketch, sets.sketch.grid.width, sets.sketch.grid.height, sets.sketch.carsSize.Y, sets.sketch.grid.parts);
   }
 
 
@@ -149,4 +141,18 @@ var s = (sketch) => {
     })
   }
 
+  sketch.keyPressed = function() {
+    if (keyCode === SPACE) {
+
+    }
+  }
+
+  let carsReset = function(DieselData, BenzineData, Electrisch_HybrideData) {
+
+    cars = cars.concat(Diesel.createCarArray(18, 6))
+    cars = cars.concat(Benzine.createCarArray(7, 4))
+    cars = cars.concat(Electrisch_Hybride.createCarArray(5, 2))
+
+    cars[0].startCar();
+  }
 }
