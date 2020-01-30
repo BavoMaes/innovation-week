@@ -1,0 +1,46 @@
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+    height: 50px;
+}
+
+.controls {
+    font-family: 'Bebas Neue', cursive;
+    display: flex;
+}
+
+.controls__button {
+    background: #333;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: 1px solid #000;
+    width: 30px;
+    height: 30px;
+}
+
+.controls__button--minus {
+    border-radius: 5px 0 0 5px;
+}
+
+.controls__button--plus {
+    border-radius: 0 5px 5px 0;
+}
+
+.controls__year {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.4rem;
+    width: 80px;
+    background-color: #111;
+    height: 30px;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+}

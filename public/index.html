@@ -5,14 +5,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+  <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.min.js"></script>
-
   <script type="module" src="./app"></script>
   <title>Document</title>
 </head>
 
 <body style="margin: 0;">
+  <header>
+    <div class="controls">
+      <button id="minus" class="controls__button controls__button--minus">-</button>
+      <span id="year" class="controls__year">2002</span>
+      <button id="plus" class="controls__button controls__button--plus">+</button>
+    </div>
+  </header>
   <div id="canvas">
   </div>
 </body>
