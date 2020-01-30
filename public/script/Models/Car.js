@@ -39,7 +39,6 @@ export class Car {
   update() {
     if (!this.drive) return;
     this.applyforces();
-
     this.velocity.add(this.acceleration);
     this.velocity.limit(this.maxSpeed);
     this.location.add(this.velocity);
@@ -48,29 +47,26 @@ export class Car {
 
   draw() {
     if (!this.stoped && !this.drive) return;
-    this.sketch.strokeWeight(2);
-    this.sketch.stroke(this.strokeColor);
-    this.sketch.fill(this.fillColor);
-
-    this.sketch.push();
-    this.sketch.fill(this.fillColor);
-    this.sketch.translate(this.location);
-    this.exhaust.draw();
-    this.sketch.box(this.size);
-    this.sketch.pop()
+    this.drawBox(this.location, this.fillColor, this.strokeColor, true)
     if (!this.stoped) return
     for (let i = 1; i <= this.heightInBlocks; i++) {
-      this.sketch.push()
-      this.sketch.noFill();
-      this.sketch.stroke(this.ghostStrokeColor);
-      this.sketch.translate(this.location.x, this.location.y - this.size.y * i, this.location.z);
-      this.sketch.box(this.size);
-      this.sketch.pop()
+      let location = this.sketch.createVector(this.location.x, this.location.y - this.size.y * i, this.location.z)
+      this.drawBox(location, this.fillColor, this.ghostStrokeColor, false)
     }
 
 
   }
-
+  drawBox(loc, fillColor, strokeColor, isMain) {
+    this.sketch.push();
+    this.sketch.strokeWeight(2);
+    this.sketch.fill(fillColor);
+    if (!isMain) this.sketch.noFill();
+    this.sketch.stroke(strokeColor);
+    this.sketch.translate(loc);
+    if (isMain) this.exhaust.draw();
+    this.sketch.box(this.size);
+    this.sketch.pop()
+  }
 
   applyforces(otherCars) {
     let arrive = this.arrive(this.endPos);
@@ -93,7 +89,7 @@ export class Car {
   }
 
   arrive(target) {
-    let desired = p5.Vector.sub(target, this.location);
+    let desired = p5.Vector.sub(this.endPos, this.location);
     let d = desired.mag();
     desired.normalize();
 
