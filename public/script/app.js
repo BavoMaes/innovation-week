@@ -18,6 +18,7 @@ let grid;
 let xTurn, yTurn;
 let cars = new Array();
 let font;
+let data;
 
 let settingrequest = new XMLHttpRequest();
 settingrequest.open('GET', './settings', true);
@@ -35,15 +36,59 @@ function init() {
   let myp5 = new p5(s, sets.Id);
 }
 
+function lookupTable(jaar){
+  let row = data.findRow(jaar.toString(), 'Jaar');
+
+  var obj = {
+    jaar: row.getString('Jaar'),
+    benzine: row.getString('Benzine'),
+    diesel: row.getString('Diesel'),
+    hybride: row.getString('Elec+Hybride'),
+    benzinePercentage: row.getString('Benzine%'),
+    dieselPercentage: row.getString('Diesel%'),
+    hybridPercentage: row.getString('Elec%'),
+    totaal: row.getString('Totaal')
+  }
+return obj;
+}
+
+function lookupTable2(jaar){
+  let row = data.findRow(jaar.toString(), 'Jaar');
+
+  var obj = {
+    jaar: row.getString('Jaar'),
+    benzine: row.getString('Benzine'),
+    benzineVerbruik: row.getString('l/100kmBenzine'),
+    diesel: row.getString('Diesel'),
+    dieselVerbruik: row.getString('l/100kmDiesel'),
+    hybrid: row.getString('Hybrid'),
+    remiddelde: row.getString('Gemiddelde'),
+    delta: row.getString('Delta')
+  }
+return obj;
+}
 var s = (sketch) => {
   xTurn = -sketch.atan(1 / sketch.sqrt(2));
   yTurn = sketch.QUARTER_PI;
 
   sketch.preload = function() {
     font = sketch.loadFont('./resources/Roboto-Bold.ttf');
+    data = sketch.loadTable(
+      'WagenparkPerBrandstofsoort.csv',
+      'csv',
+      'header');
   }
 
   sketch.setup = function() {
+
+    console.log(data.getRowCount() + ' total rows in this csv file');
+    console.log(data.getColumnCount() + ' total columns in this csv file');
+
+
+    console.log('here it is:');
+    console.log(lookupTable(2010));
+    console.log(lookupTable2(2010));
+    
     sketch.createCanvas(width, height, sketch.WEBGL);
 
     sketch.ortho();

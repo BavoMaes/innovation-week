@@ -37,6 +37,14 @@ app.get('/app', function(req, res) {
   res.sendFile(path.join(__dirname + '/public/script/app.js'));
 });
 
+app.get('/WagenparkPerBrandstofsoort.csv', function(req, res) {
+  res.sendFile(path.join(__dirname + '/public/data/WagenparkPerBrandstofsoort.csv'));
+});
+
+app.get('/CO2UitstoorPerBrandstofsoort.csv', function(req, res) {
+  res.sendFile(path.join(__dirname + '/public/data/CO2UitstoorPerBrandstofsoort.csv'));
+});
+
 let init = () => {
   app.listen(port, () => console.log(`App listening on port ${port}!`));
 };
