@@ -50,7 +50,7 @@ var s = (sketch) => {
   yTurn = sketch.QUARTER_PI;
 
   sketch.preload = function() {
-    font = sketch.loadFont('./resources/Roboto-Bold.ttf');
+    font = sketch.loadFont('./resources/BebasNeue-Regular.ttf');
     myData = new Data(sketch);
   }
 
@@ -68,7 +68,7 @@ var s = (sketch) => {
     sketch.stroke(0);
 
     sketch.textFont(font);
-    sketch.textSize(40);
+    sketch.textSize(50);
     sketch.textAlign(sketch.CENTER, sketch.CENTER);
 
     let carSize = sketch.createVector(sets.sketch.carsSize.X, sets.sketch.carsSize.Y, sets.sketch.carsSize.Z);
