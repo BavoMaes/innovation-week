@@ -52,11 +52,11 @@ export class Grid {
         this.sketch.rect(-60,35,20,20);
 
         this.sketch.fill("#D851C7");
-        this.sketch.text('Benzine', 0, 65);
+        this.sketch.text('Benzine', 5, 65);
         this.sketch.rect(-60,60,20,20);
 
         this.sketch.fill("#284fc6");
-        this.sketch.text('Electrisch/Hybride', 30, 93);
+        this.sketch.text('Electrisch/Hybride', 44, 93);
         this.sketch.rect(-60,85,20,20);
 
         this.sketch.pop();
@@ -67,9 +67,12 @@ export class Grid {
         this.sketch.text('Amount of cars', 0, 0);
 
         this.sketch.noStroke();
-        this.sketch.textSize(20);
-        this.sketch.rect(-30,30,20,20);
-        this.sketch.text(': 20 000 cars', 40,40)
+        this.sketch.textSize(20);      
+        this.sketch.text(': 20 000 cars', 40,40);
+        this.sketch.translate(-20,40,10);
+        this.sketch.fill('#ffb4b4');
+        this.sketch.rotateY(this.sketch.frameCount/50);
+        this.sketch.box(20);
 
         this.sketch.pop();
 
