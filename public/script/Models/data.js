@@ -15,16 +15,13 @@ export class Data {
 
 
   lookupWagenPark(jaar) {
-    let row = this.WagenparkPerBrandstofsoort.findRow(jaar.toString(), 'Jaar');
 
+    let row = this.WagenparkPerBrandstofsoort.findRow(jaar.toString(), 'Jaar');
     var obj = {
-      jaar: row.getString('Jaar'),
+      jaar: row.getString("Jaar"),
       benzine: row.getString('Benzine'),
       diesel: row.getString('Diesel'),
-      hybride: row.getString('Elec+Hybride'),
-      benzinePercentage: row.getString('Benzine%'),
-      dieselPercentage: row.getString('Diesel%'),
-      hybridPercentage: row.getString('Elec%'),
+      hybrid: row.getString('Hybrid'),
       totaal: row.getString('Totaal')
     }
     return obj;
@@ -32,18 +29,41 @@ export class Data {
 
   lookupCO2(jaar) {
     let row = this.CO2UitstoorPerBrandstofsoort.findRow(jaar.toString(), 'Jaar');
-
     var obj = {
       jaar: row.getString('Jaar'),
       benzine: row.getString('Benzine'),
-      benzineVerbruik: row.getString('l/100kmBenzine'),
       diesel: row.getString('Diesel'),
-      dieselVerbruik: row.getString('l/100kmDiesel'),
-      hybrid: row.getString('Hybrid'),
-      remiddelde: row.getString('Gemiddelde'),
-      delta: row.getString('Delta')
+      hybrid: row.getString('Hybrid')
+
     }
     return obj;
+  }
+
+  getBlockSize(jaar) {
+    let returnVal = new Array();
+
+    let newDataCars = this.lookupWagenPark(jaar);
+    let newDataCO2 = this.lookupCO2(jaar);
+
+
+
+    let benzine = {
+      name: "Benzine",
+      co2: newDataCO2.benzine > 90 ? Math.round((newDataCO2.benzine - 90) / 5) : 1,
+      amount: Math.round(newDataCars.benzine / 12500)
+    }
+    let diesel = {
+      name: "Diesel",
+      co2: newDataCO2.diesel > 90 ? Math.round((newDataCO2.diesel - 90) / 5) : 1,
+      amount: Math.round(newDataCars.diesel / 12500)
+    }
+    let hybrid = {
+      name: "Hybrid",
+      co2: newDataCO2.hybrid > 90 ? Math.round((newDataCO2.hybrid - 90) / 5) : 1,
+      amount: Math.round(newDataCars.hybrid / 12500)
+    }
+    returnVal.push(benzine, diesel, hybrid);
+    return returnVal;
   }
 
 

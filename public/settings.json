@@ -1,16 +1,17 @@
 {
     "Id": "canvas",
     "sketch": {
-      "carsCount": 2,
+      "columnCount": 4,
+
       "grid":{
-        "width":400,
-        "height":400,
-        "parts":10
+        "width":525,
+        "height":525,
+        "parts":14
       },
       "carsSize":{
-        "X":40,
-        "Y":40,
-        "Z":40
+        "X":38,
+        "Y":38,
+        "Z":38
       },
       "colors":{
         "Benzine": "#D851C7",

@@ -57,7 +57,7 @@ export class Car {
     this.sketch.box(this.size);
     this.sketch.pop()
     if (!this.stoped) return
-    for (let i = 1; i < this.heightInBlocks; i++) {
+    for (let i = 1; i <= this.heightInBlocks; i++) {
       this.sketch.push()
       this.sketch.noFill();
       this.sketch.stroke(this.ghostStrokeColor);

@@ -57,8 +57,7 @@ var s = (sketch) => {
   sketch.setup = function() {
 
 
-    console.log(myData.lookupCO2(2010));
-    console.log(myData.lookupWagenPark(2010));
+
 
     sketch.createCanvas(width, height, sketch.WEBGL);
 
@@ -78,17 +77,17 @@ var s = (sketch) => {
     let startColumn1 = sketch.createVector(0, 0, -700);
     let endColumn1 = sketch.createVector(-(mainGrid.width / 2 - carSize.x * 0.5), 0, (mainGrid.width / 2 - carSize.z / 2));
 
-    let startColumn2 = sketch.createVector(-carSize.x * 0.5, 0, -700);
-    let endColumn2 = sketch.createVector(-carSize.x * 0.5, 0, (mainGrid.width / 2 - carSize.z / 2));
+    let startColumn2 = sketch.createVector(-carSize.x, 0, -700);
+    let endColumn2 = sketch.createVector(-carSize.x - carSize.x * 0.5, 0, (mainGrid.width / 2 - carSize.z / 2));
 
     let startColumn3 = sketch.createVector(0, 0, -700);
-    let endColumn3 = sketch.createVector((mainGrid.width / 2 - carSize.x * 1.5), 0, (mainGrid.width / 2 - carSize.z / 2));
+    let endColumn3 = sketch.createVector((mainGrid.width / 2 - carSize.x * 3.5), 0, (mainGrid.width / 2 - carSize.z / 2));
 
-    diesel = new CarType(startColumn1, endColumn1, carSize, sets.sketch.colors.Diesel, sketch)
-    benzine = new CarType(startColumn2, endColumn2, carSize, sets.sketch.colors.Benzine, sketch)
-    electrischHybride = new CarType(startColumn3, endColumn3, carSize, sets.sketch.colors.Electrisch_Hybride, sketch)
+    diesel = new CarType(startColumn1, endColumn1, sets.sketch.columnCount, carSize, sets.sketch.colors.Diesel, sketch)
+    benzine = new CarType(startColumn2, endColumn2, sets.sketch.columnCount, carSize, sets.sketch.colors.Benzine, sketch)
+    electrischHybride = new CarType(startColumn3, endColumn3, sets.sketch.columnCount, carSize, sets.sketch.colors.Electrisch_Hybride, sketch)
 
-    carsReset();
+    carsReset(2011);
 
   }
 
@@ -121,11 +120,13 @@ var s = (sketch) => {
     }
   }
 
-  let carsReset = function() {
-
-    cars = cars.concat(diesel.createCarArray(18, 6))
-    cars = cars.concat(benzine.createCarArray(7, 4))
-    cars = cars.concat(electrischHybride.createCarArray(5, 2))
+  let carsReset = function(jaar) {
+    let carData = myData.getBlockSize(jaar);
+    console.log(carData)
+    //cars = cars.concat(diesel.createCarArray(9, 0))
+    cars = cars.concat(diesel.createCarArray(carData[0].amount, carData[0].co2))
+    cars = cars.concat(benzine.createCarArray(carData[1].amount, carData[1].co2))
+    cars = cars.concat(electrischHybride.createCarArray(carData[2].amount, carData[2].co2))
 
     cars[0].startCar();
   }
