@@ -7,7 +7,7 @@ export class CarType {
 
 
 
-  constructor(_startColumn, _endColumn, _rowCount, _carSize, _color, _sketch) {
+  constructor(_startColumn, _endColumn, _rowCount, _carSize, _color, _sound, _sketch) {
     this.startColumn = _startColumn;
     this.endColumn = _endColumn;
     this.color = _color;
@@ -15,6 +15,7 @@ export class CarType {
     this.carSize = _carSize;
     this.size = 0;
     this.row = 4;
+    this.sound = _sound
   }
 
 
@@ -29,7 +30,7 @@ export class CarType {
         startPos = this.sketch.createVector((x * this.carSize.x) + this.startColumn.x, this.startColumn.y, this.startColumn.z);
         dest = this.sketch.createVector((x * this.carSize.x) + this.endColumn.x, this.endColumn.y, this.endColumn.z - (y * this.carSize.z));
         console.log(counter < size)
-        if (counter++ < size) cars.push(new Car(startPos, dest, this.carSize, this.color, height, this.sketch))
+        if (counter++ < size) cars.push(new Car(startPos, dest, this.carSize, this.color, height, this.sound, this.sketch))
       }
 
     }

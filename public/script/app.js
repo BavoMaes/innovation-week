@@ -24,7 +24,7 @@ let xTurn, yTurn;
 let cars = new Array();
 let diesel, benzine, electrischHybride;
 let font;
-let myData;
+let myData, mySound;
 
 let settingrequest = new XMLHttpRequest();
 settingrequest.open('GET', './settings', true);
@@ -47,10 +47,13 @@ var s = (sketch) => {
   sketch.preload = function() {
     font = sketch.loadFont('./resources/BebasNeue-Regular.ttf');
     myData = new Data(sketch);
+
+    sketch.soundFormats('wav', 'ogg');
+    mySound = sketch.loadSound('./resources/woosh.wav');
   }
 
   sketch.setup = function() {
-
+    mySound.setVolume(0.5);
     sketch.createCanvas(width, height, sketch.WEBGL);
 
     sketch.ortho();
@@ -75,11 +78,11 @@ var s = (sketch) => {
     let startColumn3 = sketch.createVector(0, 0, -700);
     let endColumn3 = sketch.createVector((mainGrid.width / 2 - carSize.x * 3.5), 0, (mainGrid.width / 2 - carSize.z / 2));
 
-    diesel = new CarType(startColumn1, endColumn1, sets.sketch.columnCount, carSize, sets.sketch.colors.Diesel, sketch)
-    benzine = new CarType(startColumn2, endColumn2, sets.sketch.columnCount, carSize, sets.sketch.colors.Benzine, sketch)
-    electrischHybride = new CarType(startColumn3, endColumn3, sets.sketch.columnCount, carSize, sets.sketch.colors.Electrisch_Hybride, sketch)
+    diesel = new CarType(startColumn1, endColumn1, sets.sketch.columnCount, carSize, sets.sketch.colors.Diesel, mySound, sketch)
+    benzine = new CarType(startColumn2, endColumn2, sets.sketch.columnCount, carSize, sets.sketch.colors.Benzine, mySound, sketch)
+    electrischHybride = new CarType(startColumn3, endColumn3, sets.sketch.columnCount, carSize, sets.sketch.colors.Electrisch_Hybride, mySound, sketch)
 
-    carsReset(2011);
+    carsReset(2018);
 
   }
 
@@ -90,12 +93,12 @@ var s = (sketch) => {
 
     sketch.rotateX(xTurn);
     sketch.rotateY(yTurn);
-    sketch.translate(0, 150, 0);
+    sketch.translate(0, 200, 0);
 
     mainGrid.draw();
 
     for (let i = 1; i < cars.length; i++) {
-      if (cars[i - 1].EventpointReached) cars[i].startCar()
+      if (cars[i - 1].EventpointReached && !cars[i].drive) cars[i].startCar()
     }
 
     cars.forEach(function(car) {
@@ -110,6 +113,7 @@ var s = (sketch) => {
     cars = cars.concat(diesel.createCarArray(carData[0].amount, carData[0].co2))
     cars = cars.concat(benzine.createCarArray(carData[1].amount, carData[1].co2))
     cars = cars.concat(electrischHybride.createCarArray(carData[2].amount, carData[2].co2))
+    //cars = cars.concat(diesel.createCarArray(2, 10))
     cars[0].startCar();
   }
 }

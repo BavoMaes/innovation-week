@@ -49,17 +49,17 @@ export class Data {
 
     let benzine = {
       name: "Benzine",
-      co2: newDataCO2.benzine > 90 ? Math.round((newDataCO2.benzine - 90) / 5) : 1,
+      co2: newDataCO2.benzine > 70 ? Math.round((newDataCO2.benzine - 70) / 10) : 1,
       amount: Math.round(newDataCars.benzine / 12500)
     }
     let diesel = {
       name: "Diesel",
-      co2: newDataCO2.diesel > 90 ? Math.round((newDataCO2.diesel - 90) / 5) : 1,
+      co2: newDataCO2.diesel > 70 ? Math.round((newDataCO2.diesel - 70) / 10) : 1,
       amount: Math.round(newDataCars.diesel / 12500)
     }
     let hybrid = {
       name: "Hybrid",
-      co2: newDataCO2.hybrid > 90 ? Math.round((newDataCO2.hybrid - 90) / 5) : 1,
+      co2: newDataCO2.hybrid > 70 ? Math.round((newDataCO2.hybrid - 70) / 10) : 1,
       amount: Math.round(newDataCars.hybrid / 12500)
     }
     returnVal.push(benzine, diesel, hybrid);

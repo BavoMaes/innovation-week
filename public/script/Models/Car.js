@@ -4,7 +4,7 @@ import {
 
 export class Car {
 
-  constructor(_startPos, _endPos, _size, _color, _heightInBlocks, _sketch) {
+  constructor(_startPos, _endPos, _size, _color, _heightInBlocks, _sound, _sketch) {
     this.sketch = _sketch;
     this.startPos = _startPos;
     this.endPos = _endPos;
@@ -12,7 +12,7 @@ export class Car {
     this.size = _size;
     this.fillColor = this.sketch.color(_color);
     this.strokeColor = this.sketch.color(this.fillColor.levels[0] - 50, this.fillColor.levels[1] - 50, this.fillColor.levels[2] - 50)
-    this.ghostStrokeColor = this.sketch.color(this.fillColor.levels[0], this.fillColor.levels[1], this.fillColor.levels[2], 20)
+    this.ghostStrokeColor = this.sketch.color(this.fillColor.levels[0], this.fillColor.levels[1], this.fillColor.levels[2], 50)
 
     this.drive = false;
     this.stoped = false;
@@ -21,9 +21,11 @@ export class Car {
     this.maxSpeed = 25;
     this.maxForce = 0;
 
+    this.sound = _sound;
+
     this.reset(_heightInBlocks);
 
-    this.exhaust = new Exhaust(this.sketch, this, 3);
+    this.exhaust = new Exhaust(this.sketch, this, 5);
   }
 
   reset(heightInBlocks) {
@@ -81,14 +83,14 @@ export class Car {
   }
 
   startCar() {
+    if (!this.drive) this.sound.play();
     this.drive = true;
+
 
   }
   stopCar() {
-
     this.stoped = true;
   }
-
 
   arrive(target) {
     let desired = p5.Vector.sub(target, this.location);
