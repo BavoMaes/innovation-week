@@ -120,7 +120,7 @@ var s = (sketch) => {
 
     sketch.rotateX(xTurn);
     sketch.rotateY(yTurn);
-    sketch.translate(0, 160, 0);
+    sketch.translate(0, 100, 0);
 
     mainGrid.draw();
 
