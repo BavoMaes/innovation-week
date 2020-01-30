@@ -32,18 +32,13 @@ settingrequest.onload = function() {
   //load settings
   const settings = JSON.parse(this.response);
   sets = settings;
-  //start viz
   init();
 }
 settingrequest.send();
 
-
 function init() {
   let myp5 = new p5(s, sets.Id);
 }
-
-
-
 
 var s = (sketch) => {
   xTurn = -sketch.atan(1 / sketch.sqrt(2));
@@ -55,9 +50,6 @@ var s = (sketch) => {
   }
 
   sketch.setup = function() {
-
-
-
 
     sketch.createCanvas(width, height, sketch.WEBGL);
 
@@ -102,8 +94,6 @@ var s = (sketch) => {
 
     mainGrid.draw();
 
-
-
     for (let i = 1; i < cars.length; i++) {
       if (cars[i - 1].EventpointReached) cars[i].startCar()
     }
@@ -114,20 +104,12 @@ var s = (sketch) => {
     })
   }
 
-  sketch.keyPressed = function() {
-    if (keyCode === SPACE) {
-
-    }
-  }
 
   let carsReset = function(jaar) {
     let carData = myData.getBlockSize(jaar);
-    console.log(carData)
-    //cars = cars.concat(diesel.createCarArray(9, 0))
     cars = cars.concat(diesel.createCarArray(carData[0].amount, carData[0].co2))
     cars = cars.concat(benzine.createCarArray(carData[1].amount, carData[1].co2))
     cars = cars.concat(electrischHybride.createCarArray(carData[2].amount, carData[2].co2))
-
     cars[0].startCar();
   }
 }
