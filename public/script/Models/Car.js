@@ -19,7 +19,7 @@ export class Car {
     this.EventpointReached = false;
 
     this.maxSpeed = 25;
-    this.maxForce = 0;
+    this.maxForce = 0.1;
 
     this.sound = _sound;
 
@@ -70,7 +70,6 @@ export class Car {
 
   applyforces(otherCars) {
     let arrive = this.arrive(this.endPos);
-    arrive.mult(1.0);
     this.applyForce(arrive);
   }
 
