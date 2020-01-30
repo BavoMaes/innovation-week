@@ -27,7 +27,10 @@ let font;
 let myData, mySound;
 let year;
 let settingrequest = new XMLHttpRequest();
-let carsReset
+let sketchInit, createCarTypeInit;
+let carsReset, carUpdate, sketchUpdate
+let carSize;
+
 settingrequest.open('GET', './settings', true);
 settingrequest.onload = function() {
   //load settings
@@ -82,6 +85,20 @@ var s = (sketch) => {
   }
 
   sketch.setup = function() {
+    sketchInit();
+    carSize = sketch.createVector(sets.sketch.carsSize.X, sets.sketch.carsSize.Y, sets.sketch.carsSize.Z);
+    mainGrid = new Grid(sketch, sets.sketch.grid.width, sets.sketch.grid.height, sets.sketch.carsSize.Y, sets.sketch.grid.parts);
+    createCarTypeInit()
+
+  }
+
+  sketch.draw = function() {
+    sketchUpdate();
+    mainGrid.draw();
+    carUpdate();
+  }
+
+  sketchInit = () => {
     mySound.setVolume(0.5);
     sketch.createCanvas(width, height, sketch.WEBGL);
 
@@ -93,11 +110,9 @@ var s = (sketch) => {
     sketch.textFont(font);
     sketch.textSize(50);
     sketch.textAlign(sketch.CENTER, sketch.CENTER);
+  }
 
-    let carSize = sketch.createVector(sets.sketch.carsSize.X, sets.sketch.carsSize.Y, sets.sketch.carsSize.Z);
-
-    mainGrid = new Grid(sketch, sets.sketch.grid.width, sets.sketch.grid.height, sets.sketch.carsSize.Y, sets.sketch.grid.parts);
-
+  createCarTypeInit = () => {
     let startColumn1 = sketch.createVector(0, 0, -700);
     let endColumn1 = sketch.createVector(-(mainGrid.width / 2 - carSize.x * 0.5), 0, (mainGrid.width / 2 - carSize.z / 2));
 
@@ -110,22 +125,18 @@ var s = (sketch) => {
     diesel = new CarType(startColumn1, endColumn1, sets.sketch.columnCount, carSize, sets.sketch.colors.Diesel, mySound, sketch)
     benzine = new CarType(startColumn2, endColumn2, sets.sketch.columnCount, carSize, sets.sketch.colors.Benzine, mySound, sketch)
     electrischHybride = new CarType(startColumn3, endColumn3, sets.sketch.columnCount, carSize, sets.sketch.colors.Electrisch_Hybride, mySound, sketch)
-
-    carsReset(2018);
-
   }
 
-
-  sketch.draw = function() {
+  sketchUpdate = () => {
     sketch.background(0);
     sketch.orbitControl();
 
     sketch.rotateX(xTurn);
     sketch.rotateY(yTurn);
     sketch.translate(0, 100, 0);
+  }
 
-    mainGrid.draw();
-
+  carUpdate = () => {
     for (let i = 1; i < cars.length; i++) {
       if (cars[i - 1].EventpointReached && !cars[i].drive) cars[i].startCar()
     }
@@ -135,9 +146,7 @@ var s = (sketch) => {
       car.draw();
     })
   }
-
-
-  carsReset = function(jaar) {
+  carsReset = (jaar) => {
     let carData = myData.getBlockSize(jaar);
     cars.length = 0
     cars = cars.concat(diesel.createCarArray(carData[0].amount, carData[0].co2))
