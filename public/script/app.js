@@ -25,7 +25,7 @@ let cars = new Array();
 let diesel, benzine, electrischHybride;
 let font;
 let myData, mySound;
-
+let year;
 let settingrequest = new XMLHttpRequest();
 settingrequest.open('GET', './settings', true);
 settingrequest.onload = function() {
@@ -41,7 +41,8 @@ function init() {
 }
 
 var s = (sketch) => {
-  xTurn = -sketch.atan(1 / sketch.sqrt(2));
+  year = 2002;
+  xTurn = -sketch.atan(1 / sketch.sqrt(2)) + 0.05;
   yTurn = sketch.QUARTER_PI;
 
   sketch.preload = function() {
@@ -93,7 +94,7 @@ var s = (sketch) => {
 
     sketch.rotateX(xTurn);
     sketch.rotateY(yTurn);
-    sketch.translate(0, 200, 0);
+    sketch.translate(0, 160, 0);
 
     mainGrid.draw();
 
