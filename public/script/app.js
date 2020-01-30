@@ -1,24 +1,30 @@
 import {
   Car
-} from './Car';
+} from './car';
 
 import {
   Grid
 } from './grid';
+
 import {
   CarType
-} from './CarType';
+} from './carType';
+
+import {
+  Data
+} from './data'
 
 let sets = {}
 
 let width = window.innerWidth;
 let height = window.innerHeight;
 let radius = 100;
-let grid;
+let mainGrid;
 let xTurn, yTurn;
 let cars = new Array();
+let diesel, benzine, electrischHybride;
 let font;
-let data;
+let myData;
 
 let settingrequest = new XMLHttpRequest();
 settingrequest.open('GET', './settings', true);
@@ -36,59 +42,23 @@ function init() {
   let myp5 = new p5(s, sets.Id);
 }
 
-function lookupTable(jaar){
-  let row = data.findRow(jaar.toString(), 'Jaar');
 
-  var obj = {
-    jaar: row.getString('Jaar'),
-    benzine: row.getString('Benzine'),
-    diesel: row.getString('Diesel'),
-    hybride: row.getString('Elec+Hybride'),
-    benzinePercentage: row.getString('Benzine%'),
-    dieselPercentage: row.getString('Diesel%'),
-    hybridPercentage: row.getString('Elec%'),
-    totaal: row.getString('Totaal')
-  }
-return obj;
-}
 
-function lookupTable2(jaar){
-  let row = data.findRow(jaar.toString(), 'Jaar');
 
-  var obj = {
-    jaar: row.getString('Jaar'),
-    benzine: row.getString('Benzine'),
-    benzineVerbruik: row.getString('l/100kmBenzine'),
-    diesel: row.getString('Diesel'),
-    dieselVerbruik: row.getString('l/100kmDiesel'),
-    hybrid: row.getString('Hybrid'),
-    remiddelde: row.getString('Gemiddelde'),
-    delta: row.getString('Delta')
-  }
-return obj;
-}
 var s = (sketch) => {
   xTurn = -sketch.atan(1 / sketch.sqrt(2));
   yTurn = sketch.QUARTER_PI;
 
   sketch.preload = function() {
     font = sketch.loadFont('./resources/Roboto-Bold.ttf');
-    data = sketch.loadTable(
-      'WagenparkPerBrandstofsoort.csv',
-      'csv',
-      'header');
+    myData = new Data(sketch);
   }
 
   sketch.setup = function() {
 
-    console.log(data.getRowCount() + ' total rows in this csv file');
-    console.log(data.getColumnCount() + ' total columns in this csv file');
 
+    console.log(myData.lookupTable(2010));
 
-    console.log('here it is:');
-    console.log(lookupTable(2010));
-    console.log(lookupTable2(2010));
-    
     sketch.createCanvas(width, height, sketch.WEBGL);
 
     sketch.ortho();
@@ -102,20 +72,23 @@ var s = (sketch) => {
 
     let carSize = sketch.createVector(sets.sketch.carsSize.X, sets.sketch.carsSize.Y, sets.sketch.carsSize.Z);
 
+    mainGrid = new Grid(sketch, sets.sketch.grid.width, sets.sketch.grid.height, sets.sketch.carsSize.Y, sets.sketch.grid.parts);
+
     let startColumn1 = sketch.createVector(0, 0, -700);
-    let endColumn1 = sketch.createVector(-(grid.width / 2 - carSize.x * 0.5), 0, (grid.width / 2 - carSize.z / 2));
+    let endColumn1 = sketch.createVector(-(mainGrid.width / 2 - carSize.x * 0.5), 0, (mainGrid.width / 2 - carSize.z / 2));
 
     let startColumn2 = sketch.createVector(-carSize.x * 0.5, 0, -700);
-    let endColumn2 = sketch.createVector(-carSize.x * 0.5, 0, (grid.width / 2 - carSize.z / 2));
+    let endColumn2 = sketch.createVector(-carSize.x * 0.5, 0, (mainGrid.width / 2 - carSize.z / 2));
 
     let startColumn3 = sketch.createVector(0, 0, -700);
-    let endColumn3 = sketch.createVector((grid.width / 2 - carSize.x * 1.5), 0, (grid.width / 2 - carSize.z / 2));
+    let endColumn3 = sketch.createVector((mainGrid.width / 2 - carSize.x * 1.5), 0, (mainGrid.width / 2 - carSize.z / 2));
 
-    let Diesel = new CarType(startColumn1, endColumn1, carSize, sets.sketch.colors.Diesel, sketch)
-    let Benzine = new CarType(startColumn2, endColumn2, carSize, sets.sketch.colors.Benzine, sketch)
-    let Electrisch_Hybride = new CarType(startColumn3, endColumn3, carSize, sets.sketch.colors.Electrisch_Hybride, sketch)
+    diesel = new CarType(startColumn1, endColumn1, carSize, sets.sketch.colors.Diesel, sketch)
+    benzine = new CarType(startColumn2, endColumn2, carSize, sets.sketch.colors.Benzine, sketch)
+    electrischHybride = new CarType(startColumn3, endColumn3, carSize, sets.sketch.colors.Electrisch_Hybride, sketch)
 
-    grid = new Grid(sketch, sets.sketch.grid.width, sets.sketch.grid.height, sets.sketch.carsSize.Y, sets.sketch.grid.parts);
+    carsReset();
+
   }
 
 
@@ -127,7 +100,7 @@ var s = (sketch) => {
     sketch.rotateY(yTurn);
     sketch.translate(0, 150, 0);
 
-    grid.draw();
+    mainGrid.draw();
 
 
 
@@ -147,11 +120,11 @@ var s = (sketch) => {
     }
   }
 
-  let carsReset = function(DieselData, BenzineData, Electrisch_HybrideData) {
+  let carsReset = function() {
 
-    cars = cars.concat(Diesel.createCarArray(18, 6))
-    cars = cars.concat(Benzine.createCarArray(7, 4))
-    cars = cars.concat(Electrisch_Hybride.createCarArray(5, 2))
+    cars = cars.concat(diesel.createCarArray(18, 6))
+    cars = cars.concat(benzine.createCarArray(7, 4))
+    cars = cars.concat(electrischHybride.createCarArray(5, 2))
 
     cars[0].startCar();
   }

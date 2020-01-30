@@ -7,28 +7,28 @@ app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
-app.get('/Car', function(req, res) {
-  res.sendFile(path.join(__dirname + '/public/script/Models/Car.js'));
+app.get('/car', function(req, res) {
+  res.sendFile(path.join(__dirname + '/public/script/models/car.js'));
 });
 
-app.get('/CarType', function(req, res) {
-  res.sendFile(path.join(__dirname + '/public/script/Models/CarType.js'));
+app.get('/carType', function(req, res) {
+  res.sendFile(path.join(__dirname + '/public/script/models/carType.js'));
 });
 
 app.get('/grid', function(req, res) {
-  res.sendFile(path.join(__dirname + '/public/script/Models/grid.js'));
+  res.sendFile(path.join(__dirname + '/public/script/models/grid.js'));
 });
 
 app.get('/settings', function(req, res) {
   res.sendFile(path.join(__dirname + '/public/settings.json'));
 });
 
-app.get('/particle', function (req, res) {
-  res.sendFile(path.join(__dirname + '/public/script/Models/particle.js'));
+app.get('/particle', function(req, res) {
+  res.sendFile(path.join(__dirname + '/public/script/models/particle.js'));
 });
 
-app.get('/exhaust', function (req, res) {
-  res.sendFile(path.join(__dirname + '/public/script/Models/exhaust.js'));
+app.get('/exhaust', function(req, res) {
+  res.sendFile(path.join(__dirname + '/public/script/models/exhaust.js'));
 });
 
 app.use('/resources', express.static(__dirname + '/public/resources/'));
@@ -37,13 +37,12 @@ app.get('/app', function(req, res) {
   res.sendFile(path.join(__dirname + '/public/script/app.js'));
 });
 
-app.get('/WagenparkPerBrandstofsoort.csv', function(req, res) {
-  res.sendFile(path.join(__dirname + '/public/data/WagenparkPerBrandstofsoort.csv'));
+app.get('/data', function(req, res) {
+  res.sendFile(path.join(__dirname + '/public/script/models/data.js'));
 });
 
-app.get('/CO2UitstoorPerBrandstofsoort.csv', function(req, res) {
-  res.sendFile(path.join(__dirname + '/public/data/CO2UitstoorPerBrandstofsoort.csv'));
-});
+
+
 
 let init = () => {
   app.listen(port, () => console.log(`App listening on port ${port}!`));

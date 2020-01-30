@@ -13,7 +13,6 @@ export class Particle {
   draw() {
     this.color = this.sketch.color(this.color.levels[0], this.color.levels[1], this.color.levels[2], this.sketch.map(this.position.y, 0, -this.height, 255, 0))
     this.sketch.push();
-    console.log(this.position.y)
     this.sketch.normalMaterial();
     this.sketch.fill(this.color);
     this.sketch.translate(this.position);

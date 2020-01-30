@@ -21,7 +21,7 @@ export class Car {
     this.maxSpeed = 25;
     this.maxForce = 0;
 
-    this.reset();
+    this.reset(_heightInBlocks);
 
     this.exhaust = new Exhaust(this.sketch, this, 3);
   }
