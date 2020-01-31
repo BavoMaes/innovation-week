@@ -108,6 +108,17 @@ export class Grid {
     this.sketch.text('(g/km)', 0, 40);
     this.sketch.pop();
 
+    this.sketch.push();
+    this.sketch.translate(-this.height / 2, -50, -this.height / 2);
+    this.sketch.textSize(10);
+    this.sketch.fill('#999999');
+    this.sketch.text('110', -20, 10);
+    this.sketch.text('120', -20, -40);
+    this.sketch.text('130', -20, -90);
+    this.sketch.text('140', -20, -140);
+    this.sketch.text('150', -20, -190);
+    this.sketch.text('160', -20, -240);
+    this.sketch.pop();
 
   }
 
