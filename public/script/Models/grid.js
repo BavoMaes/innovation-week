@@ -68,7 +68,7 @@ export class Grid {
 
     this.sketch.noStroke();
     this.sketch.textSize(20);
-    this.sketch.text(': 20 000 cars', 40, 40);
+    this.sketch.text(': 12 500 cars', 40, 40);
     this.sketch.translate(-20, 40, 10);
     this.sketch.stroke('#000000');
     this.sketch.fill('#ffffff');
