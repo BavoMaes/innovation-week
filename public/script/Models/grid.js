@@ -5,6 +5,7 @@ export class Grid {
     this.height = _height;
     this.boxHeight = _boxHeight;
     this.parts = _parts;
+    this.fillColor1;
   }
 
   draw() {
@@ -48,7 +49,9 @@ export class Grid {
     this.sketch.textSize(20);
 
     this.sketch.push();
-    this.sketch.fill("#84e6ca");
+    this.fillColor1 = this.sketch.color("#84e6ca");
+    this.sketch.fill(this.fillColor1);
+    this.sketch.stroke(this.sketch.color(this.fillColor1.levels[0] - 50, this.fillColor1.levels[1] - 50, this.fillColor1.levels[2] - 50));
     this.sketch.text('Benzine', 5, 50);
     this.sketch.translate(-50, 50, 0);
     this.sketch.rotateY(this.sketch.frameCount / 50 + this.sketch.HALF_PI);
@@ -57,7 +60,9 @@ export class Grid {
     this.sketch.pop();
 
     this.sketch.push();
-    this.sketch.fill("#D851C7");
+    this.fillColor1 = this.sketch.color("#D851C7");
+    this.sketch.fill(this.fillColor1);
+    this.sketch.stroke(this.sketch.color(this.fillColor1.levels[0] - 50, this.fillColor1.levels[1] - 50, this.fillColor1.levels[2] - 50));
     this.sketch.text('Diesel', 0, 75);
     this.sketch.translate(-50, 75, 0);
     this.sketch.rotateY(this.sketch.frameCount / 50 + this.sketch.QUARTER_PI);
@@ -66,7 +71,9 @@ export class Grid {
     this.sketch.pop();
 
     this.sketch.push();
-    this.sketch.fill("#284fc6");
+    this.fillColor1 = this.sketch.color("#284fc6");
+    this.sketch.fill(this.fillColor1);
+    this.sketch.stroke(this.sketch.color(this.fillColor1.levels[0] - 50, this.fillColor1.levels[1] - 50, this.fillColor1.levels[2] - 50));
     this.sketch.text('Electrisch/Hybride', 44, 100);
     this.sketch.translate(-50, 100, 0);
     this.sketch.rotateY(this.sketch.frameCount / 50);
