@@ -86,6 +86,8 @@ export class Grid {
     this.sketch.rotateZ(-this.sketch.HALF_PI);
     this.sketch.translate(this.height / 2, this.height / 2 + 20, -this.height / 2);
     this.sketch.text('CO2 emission', 0, 0);
+    this.sketch.textSize(20);
+    this.sketch.text('(g/km)', 0, 40);
     this.sketch.pop();
 
 
