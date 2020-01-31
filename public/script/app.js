@@ -122,8 +122,8 @@ var s = (sketch) => {
     let startColumn3 = invisStartPos
     let endColumn3 = sketch.createVector((mainGrid.width / 2 - carSize.x * 3.5), 0, (mainGrid.width / 2 - carSize.z / 2));
 
-    diesel = new CarType(startColumn1, endColumn1, sets.sketch.columnCount, carSize, sets.sketch.colors.Diesel, mySound, sketch)
-    benzine = new CarType(startColumn2, endColumn2, sets.sketch.columnCount, carSize, sets.sketch.colors.Benzine, mySound, sketch)
+    benzine = new CarType(startColumn1, endColumn1, sets.sketch.columnCount, carSize, sets.sketch.colors.Benzine, mySound, sketch)
+    diesel = new CarType(startColumn2, endColumn2, sets.sketch.columnCount, carSize, sets.sketch.colors.Diesel, mySound, sketch)
     electrischHybride = new CarType(startColumn3, endColumn3, sets.sketch.columnCount, carSize, sets.sketch.colors.Electrisch_Hybride, mySound, sketch)
   }
 
@@ -149,8 +149,8 @@ var s = (sketch) => {
   carsReset = (jaar) => {
     let carData = myData.getBlockSize(jaar);
     cars.length = 0
-    cars = cars.concat(diesel.createCarArray(carData[0].amount, carData[0].co2))
-    cars = cars.concat(benzine.createCarArray(carData[1].amount, carData[1].co2))
+    cars = cars.concat(benzine.createCarArray(carData[0].amount, carData[0].co2))
+    cars = cars.concat(diesel.createCarArray(carData[1].amount, carData[1].co2))
     cars = cars.concat(electrischHybride.createCarArray(carData[2].amount, carData[2].co2))
     //cars = cars.concat(diesel.createCarArray(2, 10))
     cars[0].startCar();

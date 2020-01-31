@@ -49,7 +49,7 @@ export class Grid {
     this.sketch.textSize(20);
 
     this.sketch.push();
-    this.fillColor1 = this.sketch.color("#84e6ca");
+    this.fillColor1 = this.sketch.color("#D851C7");
     this.sketch.fill(this.fillColor1);
     this.sketch.stroke(this.sketch.color(this.fillColor1.levels[0] - 50, this.fillColor1.levels[1] - 50, this.fillColor1.levels[2] - 50));
     this.sketch.text('Benzine', 5, 50);
@@ -60,7 +60,7 @@ export class Grid {
     this.sketch.pop();
 
     this.sketch.push();
-    this.fillColor1 = this.sketch.color("#D851C7");
+    this.fillColor1 = this.sketch.color("#84e6ca");
     this.sketch.fill(this.fillColor1);
     this.sketch.stroke(this.sketch.color(this.fillColor1.levels[0] - 50, this.fillColor1.levels[1] - 50, this.fillColor1.levels[2] - 50));
     this.sketch.text('Diesel', 0, 75);
