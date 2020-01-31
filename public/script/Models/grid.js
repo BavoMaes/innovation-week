@@ -47,22 +47,32 @@ export class Grid {
     this.sketch.noStroke();
     this.sketch.textSize(20);
 
+    this.sketch.push();
     this.sketch.fill("#84e6ca");
-    this.sketch.text('Diesel', 0, 40);
-    this.sketch.translate(-50, 40, 0);
-    this.sketch.box(20);
-    this.sketch.translate(50, -40, 0);
+    this.sketch.text('Benzine', 5, 50);
+    this.sketch.translate(-50, 50, 0);
+    this.sketch.rotateY(this.sketch.frameCount / 50 + this.sketch.HALF_PI);
+    this.sketch.rotateX(this.sketch.frameCount / 50 + this.sketch.HALF_PI);
+    this.sketch.box(15);
+    this.sketch.pop();
 
+    this.sketch.push();
     this.sketch.fill("#D851C7");
-    this.sketch.text('Benzine', 5, 65);
-    this.sketch.translate(-50, 65, 0);
-    this.sketch.box(20);
-    this.sketch.translate(50, -65, 0);
+    this.sketch.text('Diesel', 0, 75);
+    this.sketch.translate(-50, 75, 0);
+    this.sketch.rotateY(this.sketch.frameCount / 50 + this.sketch.QUARTER_PI);
+    this.sketch.rotateX(this.sketch.frameCount / 50 + this.sketch.QUARTER_PI);
+    this.sketch.box(15);
+    this.sketch.pop();
 
+    this.sketch.push();
     this.sketch.fill("#284fc6");
-    this.sketch.text('Electrisch/Hybride', 44, 93);
-    this.sketch.translate(-50, 90, 0);
-    this.sketch.box(20);
+    this.sketch.text('Electrisch/Hybride', 44, 100);
+    this.sketch.translate(-50, 100, 0);
+    this.sketch.rotateY(this.sketch.frameCount / 50);
+    this.sketch.rotateX(this.sketch.frameCount / 50);
+    this.sketch.box(15);
+    this.sketch.pop();
 
     this.sketch.pop();
 
@@ -78,7 +88,8 @@ export class Grid {
     this.sketch.stroke('#000000');
     this.sketch.fill('#ffffff');
     this.sketch.rotateY(this.sketch.frameCount / 50);
-    this.sketch.box(20);
+    this.sketch.rotateX(this.sketch.frameCount / 50);
+    this.sketch.box(15);
 
     this.sketch.pop();
 
