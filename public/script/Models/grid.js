@@ -70,7 +70,8 @@ export class Grid {
     this.sketch.textSize(20);
     this.sketch.text(': 20 000 cars', 40, 40);
     this.sketch.translate(-20, 40, 10);
-    this.sketch.fill('#ffb4b4');
+    this.sketch.stroke('#000000');
+    this.sketch.fill('#ffffff');
     this.sketch.rotateY(this.sketch.frameCount / 50);
     this.sketch.box(20);
 
